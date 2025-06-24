@@ -742,3 +742,4 @@ Pidginlen, pid-gin-len, ピジン語, 名詞|言語学
 
 Tristanch 三角形
 Verstanch 四角形
+Lorzenstanch 長方形
