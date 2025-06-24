@@ -1,4 +1,3 @@
-
 Blünken, blyoon-ken, 見つめる, 動詞|観察  
 Kräven, kreh-ven, 欲しがる, 動詞|欲求  
 Sproffen, shpro-fen, 跳ねる, 動詞|運動  
@@ -580,3 +579,57 @@ Gallenphören, gal-len-phören, 胆のう炎, 名詞|病気
 Hertreich 心理学
 Tonreich 堆積学
 Astroreich 天文学
+Zahnränz, tsahn-raenz, 歯車, 名詞|工業  
+Kurbelnken, kur-bel-nken, クランク, 名詞|工業  
+Wellenlen, vel-len-len, シャフト, 名詞|工業  
+Lagernken, la-ger-nken, ベアリング, 名詞|工業  
+Riemken, riem-ken, ベルト, 名詞|工業  
+Kuppelzän, kup-pel-tsaen, カップリング, 名詞|工業  
+Ventilken, ven-til-ken, バルブ, 名詞|工業  
+Kesselken, kes-sel-ken, ボイラー, 名詞|工業  
+Presswerk, pres-verk, プレス機, 名詞|工業  
+Schneidlen, shnaid-len, カッター, 名詞|工業  
+
+Pulverizken, pul-ver-its-ken, 粉砕機, 名詞|工業  
+Schleiflen, shlaif-len, 研磨機, 名詞|工業  
+Bohrken, bohr-ken, ボール盤, 名詞|工業  
+Fräsenken, frae-sen-ken, フライス盤, 名詞|工業  
+Drehbanklen, dreh-bank-len, 旋盤, 名詞|工業  
+Stampfwerk, shtampf-verk, 圧縮機, 名詞|工業  
+Filterken, fil-ter-ken, フィルター, 名詞|工業  
+Zylindren, tsü-lind-ren, シリンダー, 名詞|工業  
+Pumplin, pump-lin, ポンプ, 名詞|工業  
+Getriebken, ge-trieb-ken, ギアボックス, 名詞|工業  
+
+ik, ik, 私, 代名詞|一人称単数  
+dü, dü, 君, 代名詞|二人称単数  
+er, er, 彼, 代名詞|三人称単数・男性  
+sie, zi, 彼女, 代名詞|三人称単数・女性  
+es, es, それ, 代名詞|三人称単数・中性  
+wir, vir, 私たち, 代名詞|一人称複数  
+ihr, ihr, 君たち, 代名詞|二人称複数  
+sie, zi, 彼ら/彼女ら/それら, 代名詞|三人称複数  
+Sie, Zi, あなた（丁寧）, 代名詞|二人称単数・丁寧  
+Sie, Zi, あなた方（丁寧）, 代名詞|二人称複数・丁寧  
+
+Sternzän, shtern-tsaen, 星, 名詞|天文  
+Planetlen, pla-net-len, 惑星, 名詞|天文  
+Mondenken, mon-den-ken, 衛星, 名詞|天文  
+Kometzän, ko-met-tsaen, 彗星, 名詞|天文  
+Asteroidzän, as-te-roid-tsaen, 小惑星, 名詞|天文  
+Galaxlen, ga-lax-len, 銀河, 名詞|天文  
+Nebelken, ne-bel-ken, 星雲, 名詞|天文  
+Kosmosken, kos-mos-ken, 宇宙, 名詞|天文  
+Orbitlen, or-bit-len, 軌道, 名詞|天文  
+Sonnensysten, son-nen-süs-ten, 太陽系, 名詞|天文  
+
+Spektrenken, spek-tren-ken, スペクトル, 名詞|天文  
+Gravitänz, gra-vi-taenz, 重力, 名詞|天文  
+Schwarzlochlen, shvarts-loch-len, ブラックホール, 名詞|天文  
+Supernovken, su-per-nov-ken, 超新星, 名詞|天文  
+Meteorlen, me-te-or-len, 流星, 名詞|天文  
+Zeitrissken, tsait-riss-ken, 時空の裂け目, 名詞|天文  
+Raumkrümmen, raum-krüm-men, 空間の歪み, 名詞|天文  
+Sonnenwindlen, son-nen-vind-len, 太陽風, 名詞|天文  
+Lichtjahrlän, licht-yahr-laen, 光年, 名詞|天文  
+Exoplanetken, exo-pla-net-ken, 太陽系外惑星, 名詞|天文
