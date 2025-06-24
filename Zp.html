@@ -19,6 +19,12 @@
     textarea {
       height: 60px;
     }
+    pre {
+      background: #fff;
+      padding: 10px;
+      max-width: 500px;
+      overflow: auto;
+    }
   </style>
 </head>
 <body>
@@ -36,6 +42,7 @@
   <input id="wordName" placeholder="単語名">
   <input id="pronunciation" placeholder="発音 (例: fo͞o-bär)">
   <input id="wordMeaning" placeholder="意味 (例: 架空の語)">
+  <input id="variations" placeholder="バリエーション (例: 変種1|変種2)">
   <button onclick="addWord()">単語を追加</button>
 
   <hr>
@@ -53,6 +60,12 @@
   <input id="exampleWordNumber" placeholder="関連する単語番号 (例: 123)">
   <button onclick="addExample()">例文を追加</button>
 
+  <hr>
+
+  <h2>📥 一括入力で単語追加（バリエーション対応）</h2>
+  <textarea id="bulkInput" placeholder="単語, 発音, 翻訳, バリエーション1|バリエーション2 を改行区切りで入力"></textarea>
+  <button onclick="bulkAddWords()">一括追加</button>
+
   <script>
     const apiBase = 'https://zpdic.ziphil.com/api/v0';
 
@@ -69,15 +82,20 @@
       const name = document.getElementById('wordName').value;
       const pronunciation = document.getElementById('pronunciation').value;
       const meaning = document.getElementById('wordMeaning').value;
+      const variationsInput = document.getElementById('variations').value;
+
+      const variations = variationsInput
+        ? variationsInput.split('|').map(v => ({ name: v.trim() }))
+        : [];
 
       const body = {
         word: {
           name: name,
-          pronunciation: pronunciation,
+          pronunciation: pronunciation || "",
           equivalents: [],
           tags: [],
           informations: [{ title: "意味", text: meaning }],
-          variations: [],
+          variations: variations,
           relations: []
         }
       };
@@ -127,6 +145,49 @@
       });
 
       alert(res.ok ? '✅ 例文を追加しました' : `❌ エラー: ${res.status}`);
+    }
+
+    async function bulkAddWords() {
+      const dictionaryId = document.getElementById('dictionaryId').value;
+      const lines = document.getElementById('bulkInput').value.trim().split('\n');
+
+      for (const line of lines) {
+        const [name, pronunciation, meaning, variationsInput] = line.split(',').map(s => s.trim());
+        if (!name || !meaning) {
+          alert(`⚠ 不正な行: ${line}`);
+          continue;
+        }
+
+        const variations = variationsInput
+          ? variationsInput.split('|').map(v => ({ name: v.trim() }))
+          : [];
+
+        const body = {
+          word: {
+            name: name,
+            pronunciation: pronunciation || "",
+            equivalents: [],
+            tags: [],
+            informations: [{ title: "意味", text: meaning }],
+            variations: variations,
+            relations: []
+          }
+        };
+
+        const res = await fetch(`${apiBase}/dictionary/${dictionaryId}/word`, {
+          method: 'POST',
+          headers: getHeaders(),
+          body: JSON.stringify(body)
+        });
+
+        if (res.ok) {
+          console.log(`✅ ${name} 追加成功`);
+        } else {
+          console.error(`❌ ${name} 追加失敗 (${res.status})`);
+        }
+      }
+
+      alert('一括追加が完了しました（エラーがある場合はコンソール確認）');
     }
   </script>
 </body>
