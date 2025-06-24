@@ -123,3 +123,91 @@ Drelfen, drel-fen, 回す, 動詞|動作
 Hläufen, hlao-fen, 拾う, 動詞|収集  
 Fräufen, frao-fen, まとめる, 動詞|整理  
 4693
+über-, ü-ber, 超〜, 接頭辞|強調  
+unter-, un-ter, 〜以下, 接頭辞|制限  
+ver-, ver, 〜化する, 接頭辞|変化  
+ent-, ent, 〜から離れる, 接頭辞|除去  
+be-, be, 〜を加える, 接頭辞|付加  
+ge-, ge, 集合・完了の意, 接頭辞|状態  
+zer-, tser, 破壊・分裂の意, 接頭辞|分解  
+miss-, miss, 誤りの意, 接頭辞|否定  
+durch-, durkh, 通過・貫通の意, 接頭辞|動作  
+ab-, ap, 分離・除去の意, 接頭辞|除去  
+
+-los, los, 〜のない, 接尾辞|否定  
+-lich, likh, 〜のような, 接尾辞|形容詞化  
+-keit, kait, 〜さ・〜性, 接尾辞|名詞化  
+-ung, oong, 〜すること・結果, 接尾辞|動作名詞  
+-bar, bar, 〜できる, 接尾辞|可能性  
+-schaft, shaft, 共同体・性質, 接尾辞|集団  
+-chen, khen, 小さいもの, 接尾辞|縮小  
+-in, in, 女性形, 接尾辞|性別  
+-heit, hait, 抽象的状態, 接尾辞|性質  
+-ei, ai, 集まり・場所, 接尾辞|集合  
+
+Krankenhäus, kran-ken-hois, 病院, 名詞|施設  
+Schulken, shool-ken, 学校, 名詞|施設  
+Büroklaf, bü-ro-klaf, 会社, 名詞|施設  
+Marktplän, marktplen, 市場, 名詞|施設  
+Bahnhäus, ban-hois, 駅, 名詞|施設  
+Flughäus, flu-g-hois, 空港, 名詞|施設  
+Polizhäus, po-lits-hois, 警察署, 名詞|施設  
+Feuerstäz, foier-staets, 消防署, 名詞|施設  
+Bibliothäk, bib-lio-taek, 図書館, 名詞|施設  
+Postlen, post-len, 郵便局, 名詞|施設  
+Supermärkt, su-per-maerkt, スーパー, 名詞|施設  
+Cafélen, ka-fe-len, カフェ, 名詞|施設  
+Restaurän, res-tau-raen, レストラン, 名詞|施設  
+Kinohäus, kee-no-hois, 映画館, 名詞|施設  
+Sportzän, sport-tsaen, スポーツジム, 名詞|施設  
+Parklen, park-len, 公園, 名詞|施設  
+
+Fentlär, fent-lair, 扇風機, 名詞|家電  
+Zahnpref, tsan-pref, 歯磨き粉, 名詞|日用品  
+Gläspen, glaes-pen, コップ, 名詞|食器  
+Küchenmäl, kü-chen-mael, 包丁, 名詞|台所用品  
+Brädfen, braed-fen, まな板, 名詞|台所用品  
+Sponken, shpon-ken, スポンジ, 名詞|掃除用品  
+Tränkeflasch, trank-eh-flash, 水筒, 名詞|持ち物  
+Tüchlen, tüch-len, ハンカチ, 名詞|日用品  
+Schüpel, shü-pel, スリッパ, 名詞|衣類  
+Wäckter, vaek-ter, 目覚まし時計, 名詞|家電  
+
+Brillenken, bril-len-ken, メガネ, 名詞|衣類  
+Handtäl, hant-tael, タオル, 名詞|日用品  
+Schreibel, shrai-bel, ノート, 名詞|文具  
+Klüfenpen, klü-fen-pen, ボールペン, 名詞|文具  
+Schräftler, shreft-ler, 鉛筆, 名詞|文具  
+Rücksäcken, rück-zae-ken, リュック, 名詞|持ち物  
+Portgelb, port-gelb, 財布, 名詞|持ち物  
+Schlüssken, shlüss-ken, 鍵, 名詞|持ち物  
+Blätfol, blet-fol, 書類ファイル, 名詞|文具  
+Fläschken, flaesh-ken, ボトル, 名詞|日用品  
+
+Sitzken, sits-ken, 椅子, 名詞|家具  
+Tischlen, tish-len, 机, 名詞|家具  
+Lämpken, laemp-ken, ランプ, 名詞|家電  
+Fernsiehn, fern-zee-hn, テレビ, 名詞|家電  
+Rechnermäl, rekh-ner-mael, パソコン, 名詞|家電  
+Ladkef, lad-kef, 充電器, 名詞|家電  
+Tastklaf, tast-klaf, キーボード, 名詞|家電  
+Mausken, maus-ken, マウス, 名詞|家電  
+Fönken, fön-ken, ドライヤー, 名詞|家電  
+Spieglen, shpee-glen, 鏡, 名詞|家具  
+
+Bettlin, bet-lin, ベッド, 名詞|家具  
+Decklen, dek-len, 毛布, 名詞|家具  
+Kissken, kis-ken, 枕, 名詞|家具  
+Schrängken, shrang-ken, 棚, 名詞|家具  
+Schranklen, shrank-len, クローゼット, 名詞|家具  
+Kochflän, koch-flaen, コンロ, 名詞|台所用品  
+Pfännlen, pfaen-len, フライパン, 名詞|台所用品  
+Topflen, top-flen, 鍋, 名詞|台所用品  
+Bestecklen, be-shtek-len, カトラリー, 名詞|台所用品  
+Schüsselken, shüss-el-ken, ボウル, 名詞|台所用品  
+
+Seifenken, sai-fen-ken, 石鹸, 名詞|日用品  
+Waschlätz, vash-laets, 洗面器, 名詞|日用品  
+Zahnbürst, tsan-bürst, 歯ブラシ, 名詞|日用品  
+Handseck, hant-sek, 消毒ジェル, 名詞|日用品  
+Regenschirm, re-gen-shirm, 傘, 名詞|持ち物  
