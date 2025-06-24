@@ -481,3 +481,61 @@ Est, est, 東, 方角|方向
 Wisch, visch, 西, 方角|方向  
 Norn, norn, 北, 方角|方向  
 Swar, swar, 南, 方角|方向
+
+Holundken, ho-lund-ken, セイヨウニワトコ（接骨木）, 名詞|植物  
+Wärzelken, vaer-tsel-ken, ワラビ, 名詞|植物  
+Röslen, roes-len, バラ, 名詞|植物  
+Lindken, lind-ken, 菩提樹, 名詞|植物  
+Eichken, aich-ken, オーク, 名詞|植物  
+Birkenlen, bir-ken-len, シラカバ, 名詞|植物  
+Ahornken, a-horn-ken, カエデ, 名詞|植物  
+Haselnken, ha-sel-nken, ハシバミ, 名詞|植物  
+Buchlen, buh-klen, ブナ, 名詞|植物  
+Weidken, vaid-ken, ヤナギ, 名詞|植物  
+
+Kastanlen, kas-tan-len, クリ, 名詞|植物  
+Ulmenken, ul-men-ken, ニレ, 名詞|植物  
+Eibenken, ei-ben-ken, イチイ, 名詞|植物  
+Pappelken, pap-pel-ken, ポプラ, 名詞|植物  
+Zedernken, tse-dern-ken, ヒマラヤスギ, 名詞|植物  
+Lorbeeren, lor-bee-ren, ローレル, 名詞|植物  
+Thymken, tühm-ken, タイム, 名詞|植物  
+Rosmärlen, rosm-aer-len, ローズマリー, 名詞|植物  
+Lavänzlen, la-vaentz-len, ラベンダー, 名詞|植物  
+Salbeiken, sal-bai-ken, セージ, 名詞|植物  
+
+Melissenken, me-lis-sen-ken, レモンバーム, 名詞|植物  
+Kamillken, ka-mil-ken, カモミール, 名詞|植物  
+Brennessken, bren-nes-ken, イラクサ, 名詞|植物  
+Kleeblen, klee-blen, クローバー, 名詞|植物  
+Schachtkren, shacht-kren, スギナ, 名詞|植物  
+Mohnken, mohn-ken, ケシ, 名詞|植物  
+Schneeglöckken, shnee-glöck-ken, スノードロップ, 名詞|植物  
+Veilchenken, fai-lchen-ken, スミレ, 名詞|植物  
+Gänseblümken, gaen-se-blüm-ken, ヒナギク, 名詞|植物  
+Sonnenblümken, zon-nen-blüm-ken, ヒマワリ, 名詞|植物  
+
+Kernplat, kern-plat, カーネル, 名詞|IT  
+Betriebken, be-trieb-ken, OS（オペレーティングシステム）, 名詞|IT  
+Dateiblät, da-tai-blaet, ファイル, 名詞|IT  
+Ordnerken, ord-ner-ken, フォルダ, 名詞|IT  
+Netzwerklen, netz-verk-len, ネットワーク, 名詞|IT  
+Prozässlen, pro-tsaess-len, プロセス, 名詞|IT  
+Treiberken, trai-ber-ken, ドライバ, 名詞|IT  
+Schnittstellken, schnitt-shtell-ken, インターフェース, 名詞|IT  
+Grafkartenken, graf-kar-ten-ken, グラフィックボード, 名詞|IT  
+Hauptspeichlen, haupt-shpaich-len, メインメモリ, 名詞|IT  
+
+Festplattenken, fest-plat-ten-ken, ハードディスク, 名詞|IT  
+Sicherheitsmodül, si-cher-heits-mo-duel, セキュリティモジュール, 名詞|IT  
+Programmlen, pro-gram-len, プログラム, 名詞|IT  
+Befehlszän, be-fehls-tsaen, コマンド, 名詞|IT  
+Virtuälkern, vir-tu-ael-kern, 仮想マシン, 名詞|IT  
+Netzschutzken, netz-shuts-ken, ファイアウォール, 名詞|IT  
+Cloudwerk, klau-d-verk, クラウド, 名詞|IT  
+Bugsken, bugs-ken, バグ, 名詞|IT  
+Patchlen, patch-len, パッチ, 名詞|IT  
+Kompilken, kom-pil-ken, コンパイラ, 名詞|IT  
+Vortegsch 曇り forutehi_shu
+Vorteg 雨 forutehi
+Sunne 晴れ san
