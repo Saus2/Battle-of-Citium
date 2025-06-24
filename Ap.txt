@@ -633,3 +633,47 @@ Raumkrümmen, raum-krüm-men, 空間の歪み, 名詞|天文
 Sonnenwindlen, son-nen-vind-len, 太陽風, 名詞|天文  
 Lichtjahrlän, licht-yahr-laen, 光年, 名詞|天文  
 Exoplanetken, exo-pla-net-ken, 太陽系外惑星, 名詞|天文
+
+Zahlken, tsaal-ken, 数, 名詞|数学  
+Summenzän, sum-men-tsaen, 合計, 名詞|数学  
+Produktlen, pro-dukt-len, 積, 名詞|数学  
+Differenzken, dif-fe-renz-ken, 差, 名詞|数学  
+Bruchlen, brukh-len, 分数, 名詞|数学  
+Wurzlen, vurtz-len, ルート, 名詞|数学  
+Funkzän, funk-tsaen, 関数, 名詞|数学  
+Integralzän, in-te-gral-tsaen, 積分, 名詞|数学  
+Grenzwertken, grenz-vert-ken, 極限, 名詞|数学  
+Ableitzän, a-blei-tsaen, 微分, 名詞|数学  
+
+Vektorlän, vek-tor-laen, ベクトル, 名詞|数学  
+Matrixken, ma-trix-ken, 行列, 名詞|数学  
+Determinanzän, de-ter-mi-nan-tsaen, 行列式, 名詞|数学  
+Kurvenzän, kur-ven-tsaen, 曲線, 名詞|数学  
+Flächlen, flaech-len, 面積, 名詞|数学  
+Volumken, vo-lum-ken, 体積, 名詞|数学  
+Gleichunglen, gleich-ung-len, 方程式, 名詞|数学  
+Logarizän, lo-ga-ri-tsaen, 対数, 名詞|数学  
+Wahrscheinklen, var-shain-klen, 確率, 名詞|数学  
+Topologlen, to-po-log-len, 位相, 名詞|数学  
+
+Bergken, berg-ken, 山, 名詞|地形  
+Talren, tal-ren, 谷, 名詞|地形  
+Hügelken, hü-gel-ken, 丘, 名詞|地形  
+Ebnelän, eb-ne-laen, 平地, 名詞|地形  
+Klüftlen, klüft-len, 崖, 名詞|地形  
+Höhlenken, höh-len-ken, 洞窟, 名詞|地形  
+Küstenzän, kü-sten-tsaen, 海岸, 名詞|地形  
+Inselken, in-sel-ken, 島, 名詞|地形  
+Seeplen, ze-ple-n, 湖, 名詞|地形  
+Flussken, fluss-ken, 川, 名詞|地形  
+
+Meerlen, meer-len, 海, 名詞|地形  
+Wüstlen, vüst-len, 砂漠, 名詞|地形  
+Dschungelken, dschoon-gel-ken, ジャングル, 名詞|地形  
+Sumpfenken, sump-fen-ken, 沼地, 名詞|地形  
+Stepplän, stepp-laen, 草原, 名詞|地形  
+Gletschlen, gletsch-len, 氷河, 名詞|地形  
+Vulkänz, vul-kaenz, 火山, 名詞|地形  
+Felsmasslen, fels-mass-len, 岩山, 名詞|地形  
+Buchtlen, bucht-len, 入江, 名詞|地形  
+Deltafän, del-ta-faen, 三角州, 名詞|地形
