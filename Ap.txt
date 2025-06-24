@@ -577,3 +577,6 @@ Hirnphören, hirn-phören, 脳炎, 名詞|病気
 Milzenphören, mil-tsen-phören, 脾臓炎, 名詞|病気  
 Bauchspeichphören, bauch-shpaich-phören, 膵炎, 名詞|病気  
 Gallenphören, gal-len-phören, 胆のう炎, 名詞|病気  
+Hertreich 心理学
+Tonreich 堆積学
+Astroreich 天文学
