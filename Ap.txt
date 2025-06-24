@@ -211,3 +211,123 @@ Waschlätz, vash-laets, 洗面器, 名詞|日用品
 Zahnbürst, tsan-bürst, 歯ブラシ, 名詞|日用品  
 Handseck, hant-sek, 消毒ジェル, 名詞|日用品  
 Regenschirm, re-gen-shirm, 傘, 名詞|持ち物  
+
+Väter, feh-ter, 父, 名詞|家族  
+Müter, mü-ter, 母, 名詞|家族  
+Bruken, bru-ken, 兄, 名詞|家族  
+Süfen, sü-fen, 姉, 名詞|家族  
+Klenken, klen-ken, 子供, 名詞|家族  
+Glüfen, glü-fen, 息子, 名詞|家族  
+Dräfen, drä-fen, 娘, 名詞|家族  
+Frögen, froe-gen, 祖父, 名詞|家族  
+Brämen, brae-men, 祖母, 名詞|家族  
+Trufen, tru-fen, 親戚, 名詞|家族  
+
+Züsken, züs-ken, 兄弟, 名詞|人間関係  
+Fräuken, frao-ken, 友達, 名詞|人間関係  
+Schäfen, shae-fen, 恋人, 名詞|人間関係  
+Drägen, drae-gen, 配偶者, 名詞|人間関係  
+Klaufen, klao-fen, 仲間, 名詞|人間関係  
+Grülen, grü-len, 隣人, 名詞|人間関係  
+Wölfen, voe-lfen, 知人, 名詞|人間関係  
+Balken, bal-ken, 敵, 名詞|人間関係  
+Trafken, traf-ken, 上司, 名詞|人間関係  
+Flanken, flan-ken, 部下, 名詞|人間関係  
+
+Gräufen, grao-fen, 指導者, 名詞|人間関係  
+Bräufen, brao-fen, 保護者, 名詞|人間関係  
+Hräufen, hrao-fen, 支援者, 名詞|人間関係  
+Düken, dü-ken, 世代, 名詞|家族  
+Wunken, voon-ken, 同盟者, 名詞|人間関係  
+
+Grüflich, grüf-likh, 緑の, 形容詞|色  
+Blülich, blü-likh, 青い, 形容詞|色  
+Rölich, rö-likh, 赤い, 形容詞|色  
+Wällich, wael-likh, 白い, 形容詞|色  
+Schwällich, shvael-likh, 黒い, 形容詞|色  
+Glänzlich, glaenz-likh, 明るい, 形容詞|性質  
+Dunklich, dunk-likh, 暗い, 形容詞|性質  
+Klarlich, klar-likh, 透明な, 形容詞|性質  
+Starklich, stark-likh, 強い, 形容詞|性質  
+Schwachlich, shvakh-likh, 弱い, 形容詞|性質  
+
+Schnelllich, shnel-likh, 速い, 形容詞|性質  
+Langlich, lang-likh, 遅い, 形容詞|性質  
+Großlich, grohs-likh, 大きい, 形容詞|大きさ  
+Kleinlich, klain-likh, 小さい, 形容詞|大きさ  
+Hochlich, hokh-likh, 高い, 形容詞|高さ  
+Tieflich, teef-likh, 低い, 形容詞|高さ  
+Hartlich, hart-likh, 硬い, 形容詞|性質  
+Weichlich, vaikh-likh, 柔らかい, 形容詞|性質  
+Warmlich, varm-likh, 暖かい, 形容詞|温度  
+Kältlich, kelt-likh, 冷たい, 形容詞|温度  
+
+Altlich, alt-likh, 古い, 形容詞|時間  
+Neulich, noi-likh, 新しい, 形容詞|時間  
+Schönlich, shöhn-likh, 美しい, 形容詞|外見  
+Häßlich, hes-likh, 醜い, 形容詞|外見  
+Freulich, froi-likh, 嬉しい, 形容詞|感情  
+Traulich, trou-likh, 悲しい, 形容詞|感情  
+Zornlich, tsorn-likh, 怒っている, 形容詞|感情  
+Ruhlich, ruh-likh, 落ち着いた, 形容詞|感情  
+Mutlich, moot-likh, 勇敢な, 形容詞|性格  
+Feiglich, faig-likh, 臆病な, 形容詞|性格  
+
+Freundlich, froind-likh, 親切な, 形容詞|性格  
+Feindlich, faind-likh, 敵対的な, 形容詞|性格  
+Sauberlich, zau-ber-likh, 清潔な, 形容詞|衛生  
+Schmutzlich, shmuts-likh, 汚い, 形容詞|衛生  
+Reichlich, raikh-likh, 豊かな, 形容詞|経済  
+Armlich, arm-likh, 貧しい, 形容詞|経済  
+Weitlich, vait-likh, 広い, 形容詞|空間  
+Englich, eng-likh, 狭い, 形容詞|空間  
+Leichtlich, laikh-tlikh, 軽い, 形容詞|重さ  
+Schwerlich, shvair-likh, 重い, 形容詞|重さ  
+
+Giftlich, gift-likh, 有害な, 形容詞|危険  
+Heillich, hail-likh, 安全な, 形容詞|安全  
+Schnözlich, shnoez-likh, 賢い, 形容詞|知性  
+Dummlich, doom-likh, 愚かな, 形容詞|知性  
+Lustlich, loost-likh, 面白い, 形容詞|性格  
+Langweilich, lang-vai-likh, 退屈な, 形容詞|性格  
+Friedlich, freet-likh, 平和な, 形容詞|状態  
+Krieglig, kreeg-likh, 戦争好きな, 形容詞|状態  
+Feuerlich, foir-likh, 火のような, 形容詞|性質  
+Wasserlich, vas-ser-likh, 水のような, 形容詞|性質  
+
+Eislich, ais-likh, 氷のような, 形容詞|性質  
+Windlich, vint-likh, 風のような, 形容詞|性質  
+Blütlich, blü-tlikh, 花のような, 形容詞|比喩  
+Steinlich, shtain-likh, 石のような, 形容詞|比喩  
+Mondlich, mond-likh, 月のような, 形容詞|比喩  
+Sonnenlich, zon-en-likh, 太陽のような, 形容詞|比喩  
+Maglich, mag-likh, 魔法的な, 形容詞|性質  
+Natürlich, natyur-likh, 自然な, 形容詞|状態
+
+Häfen, hae-fen, 港, 名詞|場所  
+Grufen, groo-fen, 村, 名詞|場所  
+Bruken, bru-ken, 街, 名詞|場所  
+Träken, trae-ken, 都市, 名詞|場所  
+Fällen, fae-len, 森, 名詞|場所  
+Bergen, ber-gen, 山, 名詞|場所  
+Lüfen, lü-fen, 川, 名詞|場所  
+Wralfen, vral-fen, 海, 名詞|場所  
+Schlafen, shla-fen, 砂漠, 名詞|場所  
+Kröken, kroe-ken, 島, 名詞|場所  
+
+Türen, tü-ren, 家, 名詞|場所  
+Gräufen, grao-fen, 庭, 名詞|場所  
+Wälken, wael-ken, 広場, 名詞|場所  
+Franken, fran-ken, 建物, 名詞|場所  
+Dräufen, drao-fen, 道, 名詞|場所  
+Pläufen, plao-fen, 橋, 名詞|場所  
+Vrachen, vra-chen, 城, 名詞|場所  
+Bräufen, brao-fen, 塔, 名詞|場所  
+Sproffen, shpro-fen, 市場, 名詞|場所  
+Märken, mar-ken, 店, 名詞|場所  
+
+Kräufen, kroy-fen, 洞窟, 名詞|場所  
+Zärken, tsar-ken, 学校, 名詞|場所  
+Hräufen, hrao-fen, 広間, 名詞|場所  
+Trinken, trin-ken, 酒場, 名詞|場所  
+Schülen, shü-len, 聖堂, 名詞|場所  
