@@ -1,3 +1,4 @@
+
 Blünken, blyoon-ken, 見つめる, 動詞|観察  
 Kräven, kreh-ven, 欲しがる, 動詞|欲求  
 Sproffen, shpro-fen, 跳ねる, 動詞|運動  
@@ -330,4 +331,106 @@ Kräufen, kroy-fen, 洞窟, 名詞|場所
 Zärken, tsar-ken, 学校, 名詞|場所  
 Hräufen, hrao-fen, 広間, 名詞|場所  
 Trinken, trin-ken, 酒場, 名詞|場所  
-Schülen, shü-len, 聖堂, 名詞|場所  
+Schülen, shü-len, 聖堂, 名詞|場所
+Stäntmet, shtaenz-met, 金属, 名詞|素材  
+Hozen, hol-tsen, 木材, 名詞|素材  
+Steinmar, shtain-mar, 石材, 名詞|素材  
+Kläfen, klae-fen, 布, 名詞|素材  
+Gläsen, glae-sen, ガラス, 名詞|素材  
+Leqren, led-ren, 革, 名詞|素材  
+Wallen, vol-len, 羊毛, 名詞|素材  
+Köpflen, köpf-len, 骨, 名詞|素材  
+Schälen, shae-len, 貝殻, 名詞|素材  
+Seifenmet, sai-fen-met, 石鹸素材, 名詞|素材  
+
+Tonzern, ton-tsen, 粘土, 名詞|素材  
+Bräuchen, brae-chen, 紙, 名詞|素材  
+Gummirän, gum-mi-raen, ゴム, 名詞|素材  
+Kohlestän, ko-le-shtaen, 石炭, 名詞|素材  
+Ölfarn, öl-farn, 油, 名詞|素材  
+Zückren, tsük-ren, 砂糖, 名詞|素材  
+Salzen, sal-tsen, 塩, 名詞|素材  
+Schmiedstän, shmeed-shtaen, 鉄, 名詞|素材  
+Kupfrän, kup-fraen, 銅, 名詞|素材  
+Silbern, sil-bern, 銀, 名詞|素材  
+
+Goldren, gold-ren, 金, 名詞|素材  
+Plastörn, plas-toern, プラスチック, 名詞|素材  
+Betön, be-toen, コンクリート, 名詞|素材  
+Brikren, brik-ren, レンガ, 名詞|素材  
+Marmärn, mar-maern, 大理石, 名詞|素材  
+Kristäl, kris-tael, 水晶, 名詞|素材  
+Schwämren, shvaem-ren, 海綿, 名詞|素材  
+Korklen, kork-len, コルク, 名詞|素材  
+Bambüsen, bam-bü-sen, 竹, 名詞|素材  
+Basaltlen, ba-salt-len, 玄武岩, 名詞|素材  
+
+Aschlen, ash-len, 灰, 名詞|素材  
+Erden, er-den, 土, 名詞|素材  
+Tonmet, ton-met, 陶磁器, 名詞|素材  
+Messinglen, mes-sing-len, 真鍮, 名詞|素材  
+Nickeln, nik-keln, ニッケル, 名詞|素材  
+Chromlen, khröm-len, クロム, 名詞|素材  
+Stänzium, shtaen-tsium, 架空金属, 名詞|素材  
+Fasren, fas-ren, 繊維, 名詞|素材  
+Harzen, har-tsen, 樹脂, 名詞|素材  
+Kieslen, kies-len, 砂利, 名詞|素材  
+
+Brätken, braet-ken, パン, 名詞|食べ物  
+Mäsen, kae-sen, チーズ, 名詞|食べ物  
+Würstlen, vürst-len, ソーセージ, 名詞|食べ物  
+Fleischken, flaish-ken, 肉, 名詞|食べ物  
+Fischlen, fish-len, 魚, 名詞|食べ物  
+Eiren, ai-ren, 卵, 名詞|食べ物  
+Gemüsken, ge-müs-ken, 野菜, 名詞|食べ物  
+Früchtlen, frücht-len, 果物, 名詞|食べ物  
+Süpfen, süp-fen, スープ, 名詞|食べ物  
+Reisken, rais-ken, 米, 名詞|食べ物  
+
+Kartofflen, kar-toff-len, じゃがいも, 名詞|食べ物  
+Nüssen, nü-ssen, ナッツ, 名詞|食べ物  
+Schokolän, sho-ko-laen, チョコレート, 名詞|食べ物  
+Kuchenken, koo-chen-ken, ケーキ, 名詞|食べ物  
+Plätzken, plaets-ken, クッキー, 名詞|食べ物  
+Honigen, ho-ni-gen, はちみつ, 名詞|食べ物  
+Marmelän, mar-me-laen, ジャム, 名詞|食べ物  
+Salätken, za-laet-ken, サラダ, 名詞|食べ物  
+Pizzafern, pit-za-fern, ピザ, 名詞|食べ物  
+Nudelnken, noo-deln-ken, 麺, 名詞|食べ物  
+
+Butterken, but-ter-ken, バター, 名詞|食べ物  
+Zuckerkän, tsuk-ker-kaen, 砂糖菓子, 名詞|食べ物  
+Früchtenken, früch-ten-ken, フルーツ盛り, 名詞|食べ物  
+Gebäcken, ge-bae-ken, 焼き菓子, 名詞|食べ物  
+Steaklen, stek-len, ステーキ, 名詞|食べ物  
+Curryken, kur-ri-ken, カレー, 名詞|食べ物  
+Suppenlen, sup-pen-len, 汁物, 名詞|食べ物  
+Brotchen, broet-khen, 小型パン, 名詞|食べ物  
+Schnitzlen, shnits-len, カツレツ, 名詞|食べ物  
+Obstlen, obst-len, 果物類, 名詞|食べ物  
+
+Wässern, vaes-sern, 水, 名詞|飲み物  
+Bierken, bier-ken, ビール, 名詞|飲み物  
+Weinken, vain-ken, ワイン, 名詞|飲み物  
+Kafflen, kaf-len, コーヒー, 名詞|飲み物  
+Tän, taen, お茶, 名詞|飲み物  
+
+Ein, ain, 一, 数詞|数  
+Zwi, tsvi, 二, 数詞|数  
+Dri, dri, 三, 数詞|数  
+Ver, fir, 四, 数詞|数  
+Fün, fuen, 五, 数詞|数  
+Sechs, zeks, 六, 数詞|数  
+Siben, zi-ben, 七, 数詞|数  
+Acht, aht, 八, 数詞|数  
+Neun, noyn, 九, 数詞|数  
+Zehn, tsehn, 十, 数詞|数  
+
+Elf, elf, 十一, 数詞|数  
+Zwölf, tsvoelf, 十二, 数詞|数  
+Grust, grast, 百, 数詞|数  
+Vizehn, fi-tsehn, 千, 数詞|数  
+Fünehn, fuenhn, 万, 数詞|数 
+
+Juichän, juihyean, ジュース, 飲み物|甘い
+Sparklüschen, sparklueshen, 炭酸飲料, 飲み物|ピリピリ
