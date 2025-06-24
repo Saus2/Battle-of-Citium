@@ -739,3 +739,6 @@ Akzentzän, ak-tsent-tsaen, アクセント, 名詞|言語学
 Orthograflen, or-tho-graf-len, 正書法, 名詞|言語学  
 Transkriptlen, trans-kript-len, 音写・表記転写, 名詞|言語学  
 Pidginlen, pid-gin-len, ピジン語, 名詞|言語学
+
+Tristanch 三角形
+Verstanch 四角形
