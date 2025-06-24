@@ -539,3 +539,41 @@ Kompilken, kom-pil-ken, コンパイラ, 名詞|IT
 Vortegsch 曇り forutehi_shu
 Vorteg 雨 forutehi
 Sunne 晴れ san
+Brustken, brust-ken, 胸, 名詞|身体  
+Bauchlen, bauch-len, 腹, 名詞|身体  
+Rückenlen, rük-ken-len, 背中, 名詞|身体  
+Armken, arm-ken, 腕, 名詞|身体  
+Handlen, hant-len, 手, 名詞|身体  
+Fingren, fing-ren, 指, 名詞|身体  
+Beinlen, bain-len, 脚, 名詞|身体  
+Kniänken, kni-aen-ken, 膝, 名詞|身体  
+Fußlen, fuus-len, 足, 名詞|身体  
+Herzenken, her-tsen-ken, 心臓, 名詞|身体  
+
+Lungenstuc, lun-gen-stuc, 肺, 名詞|臓器  
+Lebernstuc, le-bern-stuc, 肝臓, 名詞|臓器  
+Nierenstuc, ni-ren-stuc, 腎臓, 名詞|臓器  
+Därmstuc, daerm-stuc, 腸, 名詞|臓器  
+Magenstuc, ma-gen-stuc, 胃, 名詞|臓器  
+Blasenstuc, bla-sen-stuc, 膀胱, 名詞|臓器  
+Hirnstuc, hirn-stuc, 脳, 名詞|臓器  
+Milzenstuc, mil-tsen-stuc, 脾臓, 名詞|臓器  
+Bauchspeichstuc, bauch-shpaich-stuc, 膵臓, 名詞|臓器  
+Gallenstuc, gal-len-stuc, 胆のう, 名詞|臓器  
+
+Hautstuc, haut-stuc, 皮膚, 名詞|臓器  
+Gebärmstuc, ge-baerm-stuc, 子宮, 名詞|臓器  
+Hodstuc, hod-stuc, 睾丸, 名詞|臓器  
+Eierstuc, ei-er-stuc, 卵巣, 名詞|臓器  
+Zwerchfellstuc, tsverch-fell-stuc, 横隔膜, 名詞|臓器  
+Lungenphören, lun-gen-phören, 肺炎, 名詞|病気  
+Lebernphören, le-bern-phören, 肝炎, 名詞|病気  
+Nierenphören, ni-ren-phören, 腎炎, 名詞|病気  
+Därmphören, daerm-phören, 腸炎, 名詞|病気  
+Magenphören, ma-gen-phören, 胃炎, 名詞|病気  
+
+Blasenphören, bla-sen-phören, 膀胱炎, 名詞|病気  
+Hirnphören, hirn-phören, 脳炎, 名詞|病気  
+Milzenphören, mil-tsen-phören, 脾臓炎, 名詞|病気  
+Bauchspeichphören, bauch-shpaich-phören, 膵炎, 名詞|病気  
+Gallenphören, gal-len-phören, 胆のう炎, 名詞|病気  
