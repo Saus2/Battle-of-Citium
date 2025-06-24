@@ -434,3 +434,50 @@ Fünehn, fuenhn, 万, 数詞|数
 
 Juichän, juihyean, ジュース, 飲み物|甘い
 Sparklüschen, sparklueshen, 炭酸飲料, 飲み物|ピリピリ
+
+bantche, bant-che, 連邦, 国号|構成語  
+Repchkan, rep-ch-kan, 共和国, 国号|構成語  
+Kaisrön, kai-srön, 帝国, 国号|構成語  
+Konfräk, kon-fräk, 王国, 国号|構成語  
+Freistäk, frai-shtaek, 自由国, 国号|構成語  
+Sozialprän, zo-tsial-praen, 社会主義国, 国号|構成語  
+Dempräk, dem-praek, 民主国, 国号|構成語  
+Bundshüf, bunt-shüf, 連邦州, 国号|構成語  
+Föderäk, fö-de-raek, 連邦体, 国号|構成語  
+Volksrän, folks-raen, 人民国, 国号|構成語  
+reiser, rai-ser, 王国（古風）, 国号|構成語  
+Unionsfälk, uni-ons-fae-lk, 連合国, 国号|構成語  
+Großkän, grohs-kaen, 大国, 国号|構成語  
+Kleinstänz, klain-shtaenz, 小国, 国号|構成語  
+Ostprän, ost-praen, 東方国, 国号|構成語  
+Westprän, vest-praen, 西方国, 国号|構成語  
+Nornkän, norn-kaen, 北方国, 国号|構成語  
+Swrkän, swr-kaen, 南方国, 国号|構成語  
+Mittelkän, mit-tel-kaen, 中央国, 国号|構成語  
+Inselstänz, in-sel-shtaenz, 島国, 国号|構成語  
+
+hasch, ha-sh, 〜は, 助詞|主題  
+rosch, ro-sh, 〜を, 助詞|目的語  
+nisch, ni-sh, 〜に, 助詞|方向・場所  
+vonch, fon-ch, 〜の, 助詞|所有  
+durken, dur-ken, 〜で, 助詞|手段・場所  
+auken, au-ken, 〜から, 助詞|起点  
+bisch, bi-sh, 〜まで, 助詞|終点  
+zehnken, tsehn-ken, 〜へ, 助詞|目的地  
+glänk, glaenk, 〜より, 助詞|比較  
+höker, hoeker, 〜よりも, 助詞|比較強調  
+söfen, sö-fen, 〜と, 助詞|共同  
+draufen, drau-fen, 〜や, 助詞|列挙  
+blosch, blo-sh, 〜だけ, 助詞|限定  
+müsken, müs-ken, 〜でも, 助詞|逆接  
+treken, tre-ken, 〜ので, 助詞|理由  
+wofen, vo-fen, 〜から（理由）, 助詞|理由  
+hürken, hür-ken, 〜もし, 助詞|仮定  
+lenk, lenk, 〜が, 助詞|主語マーク  
+däuf, daeu-f, 〜しか, 助詞|制限  
+klüfen, klü-fen, 〜つつ, 助詞|同時進行  
+
+Est, est, 東, 方角|方向  
+Wisch, visch, 西, 方角|方向  
+Norn, norn, 北, 方角|方向  
+Swar, swar, 南, 方角|方向
