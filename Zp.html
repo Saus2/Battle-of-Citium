@@ -43,6 +43,7 @@
   <input id="pronunciation" placeholder="発音 (例: fo͞o-bär)">
   <input id="wordMeaning" placeholder="意味 (例: 架空の語)">
   <input id="variations" placeholder="バリエーション (例: 変種1|変種2)">
+  <input id="tags" placeholder="タグ (例: 基本|重要)">
   <button onclick="addWord()">単語を追加</button>
 
   <hr>
@@ -62,8 +63,8 @@
 
   <hr>
 
-  <h2>📥 一括入力で単語追加（バリエーション対応）</h2>
-  <textarea id="bulkInput" placeholder="単語, 発音, 翻訳, バリエーション1|バリエーション2 を改行区切りで入力"></textarea>
+  <h2>📥 一括入力で単語追加（バリエーション・タグ対応）</h2>
+  <textarea id="bulkInput" placeholder="単語, 発音, 翻訳, バリエーション1|バリエーション2, タグ1|タグ2 を改行区切りで入力"></textarea>
   <button onclick="bulkAddWords()">一括追加</button>
 
   <script>
@@ -83,9 +84,14 @@
       const pronunciation = document.getElementById('pronunciation').value;
       const meaning = document.getElementById('wordMeaning').value;
       const variationsInput = document.getElementById('variations').value;
+      const tagsInput = document.getElementById('tags').value;
 
       const variations = variationsInput
         ? variationsInput.split('|').map(v => ({ name: v.trim() }))
+        : [];
+
+      const tags = tagsInput
+        ? tagsInput.split('|').map(t => t.trim())
         : [];
 
       const body = {
@@ -93,7 +99,7 @@
           name: name,
           pronunciation: pronunciation || "",
           equivalents: [],
-          tags: [],
+          tags: tags,
           informations: [{ title: "意味", text: meaning }],
           variations: variations,
           relations: []
@@ -152,7 +158,13 @@
       const lines = document.getElementById('bulkInput').value.trim().split('\n');
 
       for (const line of lines) {
-        const [name, pronunciation, meaning, variationsInput] = line.split(',').map(s => s.trim());
+        const parts = line.split(',').map(s => s.trim());
+        const name = parts[0];
+        const pronunciation = parts[1] || "";
+        const meaning = parts[2] || "";
+        const variationsInput = parts[3] || "";
+        const tagsInput = parts[4] || "";
+
         if (!name || !meaning) {
           alert(`⚠ 不正な行: ${line}`);
           continue;
@@ -162,12 +174,16 @@
           ? variationsInput.split('|').map(v => ({ name: v.trim() }))
           : [];
 
+        const tags = tagsInput
+          ? tagsInput.split('|').map(t => t.trim())
+          : [];
+
         const body = {
           word: {
             name: name,
-            pronunciation: pronunciation || "",
+            pronunciation: pronunciation,
             equivalents: [],
-            tags: [],
+            tags: tags,
             informations: [{ title: "意味", text: meaning }],
             variations: variations,
             relations: []
