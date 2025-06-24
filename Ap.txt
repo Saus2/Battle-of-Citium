@@ -677,3 +677,65 @@ Vulkänz, vul-kaenz, 火山, 名詞|地形
 Felsmasslen, fels-mass-len, 岩山, 名詞|地形  
 Buchtlen, bucht-len, 入江, 名詞|地形  
 Deltafän, del-ta-faen, 三角州, 名詞|地形
+
+Formelken, for-mel-ken, 式, 名詞|数学  
+Beweislen, be-veis-len, 証明, 名詞|数学  
+Axiomlen, a-xi-om-len, 公理, 名詞|数学  
+Hypothenken, hypo-ten-ken, 仮説, 名詞|数学  
+Satzlen, satz-len, 定理, 名詞|数学  
+Graphlen, graf-len, グラフ, 名詞|数学  
+Kombinazän, kom-bi-na-tsaen, 組合せ, 名詞|数学  
+Permutationken, per-mu-ta-tsion-ken, 順列, 名詞|数学  
+Konvergenzken, kon-ver-genz-ken, 収束, 名詞|数学  
+Divergenzken, di-ver-genz-ken, 発散, 名詞|数学  
+
+Isomorphlen, iso-morf-len, 同型, 名詞|数学  
+Homomorphlen, homo-morf-len, 準同型, 名詞|数学  
+Gruppenzän, grup-pen-tsaen, 群, 名詞|数学  
+Ringken, ring-ken, 環, 名詞|数学  
+Körperken, kör-per-ken, 体, 名詞|数学  
+Kategorieken, ka-te-go-rie-ken, 圏, 名詞|数学  
+Mengenlen, men-gen-len, 集合, 名詞|数学  
+Kardinalzän, kar-di-nal-tsaen, 基数, 名詞|数学  
+Ordinalzän, or-di-nal-tsaen, 順序数, 名詞|数学  
+Rekurszän, re-kurs-tsaen, 再帰, 名詞|数学  
+
+Sanklen, san-klen, 輝き（燦）, 名詞|漢字  
+Ganstein, gan-shtein, 岩（巌）, 名詞|漢字  
+Oblonken, ob-lon-ken, 朧（おぼろ・かすみ）, 名詞|漢字  
+Waschel, vash-el, ワシ（鷲）, 名詞|漢字  
+Scheberot, she-be-rot, 曙（夜明け）, 名詞|漢字  
+Kridlen, krid-len, 魑（妖怪・小鬼）, 名詞|漢字  
+Molken, mol-ken, 魍（魑と対になる妖怪）, 名詞|漢字  
+Kirichen, ki-ri-chen, 麒麟の「麒」, 名詞|漢字  
+Linneren, lin-ne-ren, 麒麟の「麟」, 名詞|漢字  
+Rinplatt, rin-platt, 鱗（うろこ）, 名詞|漢字  
+
+Eisenken, ai-zen-ken, 鉄（鐵）, 名詞|漢字  
+Korblen, korb-len, 籠, 名詞|漢字  
+Gitteren, git-ter-en, 檻, 名詞|漢字  
+Utzlen, uts-len, 鬱（ふさがる・重苦しい）, 名詞|漢字  
+Sattwind, satt-vind, 颯（さっと吹く風）, 名詞|漢字  
+Kaichen, kai-chen, 櫂（舟こぐ道具）, 名詞|漢字  
+
+Phonemken, fo-nem-ken, 音素, 名詞|言語学  
+Morphemken, mor-phem-ken, 形態素, 名詞|言語学  
+Lexemken, lek-sem-ken, 語彙素, 名詞|言語学  
+Syntaxlen, sün-tax-len, 統語論, 名詞|言語学  
+Semantiklen, se-man-tik-len, 意味論, 名詞|言語学  
+Pragmatzän, prag-mat-tsaen, 語用論, 名詞|言語学  
+Dialektken, di-a-lekt-ken, 方言, 名詞|言語学  
+Lautverschlen, laut-versh-len, 音変化, 名詞|言語学  
+Etymologlen, e-ty-mo-log-len, 語源学, 名詞|言語学  
+Typologlen, tü-po-log-len, 言語類型論, 名詞|言語学  
+
+Polyglotzän, po-ly-glot-tsaen, 多言語話者, 名詞|言語学  
+Idiomken, i-di-om-ken, 慣用句, 名詞|言語学  
+Slanglen, slang-len, スラング, 名詞|言語学  
+Sprachfamilken, shprakh-famil-ken, 語族, 名詞|言語学  
+Glottken, glott-ken, 声門・言語学的喉要素, 名詞|言語学  
+Syllablen, syl-lab-len, 音節, 名詞|言語学  
+Akzentzän, ak-tsent-tsaen, アクセント, 名詞|言語学  
+Orthograflen, or-tho-graf-len, 正書法, 名詞|言語学  
+Transkriptlen, trans-kript-len, 音写・表記転写, 名詞|言語学  
+Pidginlen, pid-gin-len, ピジン語, 名詞|言語学
