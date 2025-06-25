@@ -743,3 +743,13 @@ Pidginlen, pid-gin-len, ピジン語, 名詞|言語学
 Tristanch 三角形
 Verstanch 四角形
 Lorzenstanch 長方形
+Terrorvik, ter-ror-vik, テロ事件, 名詞|ニュース  
+Spionsträt, spi-on-strät, 諜報活動, 名詞|ニュース  
+Wävrikon, vaev-ri-kon, 選挙, 名詞|ニュース  
+Straikzän, straik-tsaen, 労働争議, 名詞|ニュース  
+Sensärven, sen-saer-ven, 情報統制, 名詞|ニュース  
+Justivar, yu-sti-var, 司法制度, 名詞|ニュース  
+Propävan, pro-pae-van, 世論操作, 名詞|ニュース  
+Unvalken, un-val-ken, 事故災害, 名詞|ニュース  
+Abstürvis, ab-stür-vis, 墜落事故, 名詞|ニュース  
+Korvältzen, kor-vaelt-tsen, 汚職事件, 名詞|ニュース
