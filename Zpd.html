@@ -211,12 +211,30 @@
     }
 
     async function searchWords() {
-      const url = new URL(`${apiBase}/dictionary/${document.getElementById('dictionaryId').value}/word/search`);
-      url.searchParams.append('text', document.getElementById('searchText').value);
-      url.searchParams.append('mode', document.getElementById('searchMode').value);
+      const dictionaryId = document.getElementById('dictionaryId').value.trim();
+      const text = document.getElementById('searchText').value.trim();
+      const mode = document.getElementById('searchMode').value;
 
-      const res = await fetch(url.toString(), { headers: getHeaders() });
-      document.getElementById('searchResult').textContent = await res.text();
+      if (!dictionaryId || !text) {
+        alert('辞書IDと検索文字列を入力してください');
+        return;
+      }
+
+      const url = `${apiBase}/dictionary/${dictionaryId}/word/search?text=${encodeURIComponent(text)}&mode=${mode}`;
+
+      try {
+        const res = await fetch(url, { headers: getHeaders() });
+        if (!res.ok) {
+          alert(`❌ 検索に失敗しました (${res.status})`);
+          return;
+        }
+
+        const data = await res.json();
+        document.getElementById('searchResult').textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        console.error(e);
+        alert('❌ エラーが発生しました');
+      }
     }
   </script>
 </body>
