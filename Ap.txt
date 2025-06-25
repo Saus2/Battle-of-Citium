@@ -740,6 +740,55 @@ Orthograflen, or-tho-graf-len, 正書法, 名詞|言語学
 Transkriptlen, trans-kript-len, 音写・表記転写, 名詞|言語学  
 Pidginlen, pid-gin-len, ピジン語, 名詞|言語学
 
+Zaitken, zait-ken, 時間, 名詞|時間  
+Momentlen, mo-ment-len, 瞬間, 名詞|時間  
+Sekundlen, se-kund-len, 秒, 名詞|時間  
+Minutken, mi-nut-ken, 分, 名詞|時間  
+Stundlen, shtund-len, 時, 名詞|時間  
+Taglen, tag-len, 日, 名詞|時間  
+Wochenklen, vo-chen-klen, 週, 名詞|時間  
+Monatzän, mo-nat-tsaen, 月, 名詞|時間  
+Jahrlen, yahr-len, 年, 名詞|時間  
+Ärzelken, aer-tsel-ken, 季節, 名詞|時間  
+Gesternken, ges-tern-ken, 昨日, 名詞|時間  
+Heuteken, hoi-te-ken, 今日, 名詞|時間  
+Morgenken, mor-gen-ken, 明日, 名詞|時間  
+Verganglen, fer-gang-len, 過去, 名詞|時間  
+Zukunftzän, tsu-kunft-tsaen, 未来, 名詞|時間  
+
+Freiatzän, frai-ats-tsaen, 自由, 名詞|現象  
+Diktazän, dik-ta-tsaen, 独裁, 名詞|現象  
+Rechtlen, recht-len, 法律, 名詞|現象  
+Ereignzän, e-raign-tsaen, 事件, 名詞|現象  
+Kriegken, krieg-ken, 戦争, 名詞|現象  
+Friedenken, fri-den-ken, 平和, 名詞|現象  
+Revollzän, re-voll-tsaen, 革命, 名詞|現象  
+Unruhenken, un-ru-hen-ken, 暴動, 名詞|現象  
+Katastroflen, ka-tas-tro-flen, 災害, 名詞|現象  
+Naturzän, na-tur-tsaen, 自然, 名詞|現象  
+
+Kulturken, kul-tur-ken, 文化, 名詞|現象  
+Traditzän, tra-dit-tsaen, 伝統, 名詞|現象  
+Wirtschaftzän, virt-shaft-tsaen, 経済, 名詞|現象  
+Inflatzän, in-flat-tsaen, インフレ, 名詞|現象  
+Deflazän, de-fla-tsaen, デフレ, 名詞|現象  
+Technologlen, te-chno-log-len, 技術, 名詞|現象  
+Industriken, in-dus-tri-ken, 工業, 名詞|現象  
+Migrationken, mi-gra-tsion-ken, 移民, 名詞|現象  
+Epidemizän, e-pi-de-mi-tsaen, 疫病, 名詞|現象  
+Korruptionken, kor-rup-tsion-ken, 汚職, 名詞|現象  
+
+Justizlen, yu-stiz-len, 司法, 名詞|現象  
+Zensurzän, tsen-sur-tsaen, 検閲, 名詞|現象  
+Propaganzän, pro-pa-gan-tsaen, 宣伝, 名詞|現象  
+Demokrazän, de-mo-kra-tsaen, 民主主義, 名詞|現象  
+Autoritärzän, au-to-ri-taer-tsaen, 権威主義, 名詞|現象  
+Allianzlen, a-li-anz-len, 同盟, 名詞|現象  
+Spionazän, spio-na-tsaen, スパイ活動, 名詞|現象  
+Expanzän, ex-pan-tsaen, 拡張, 名詞|現象  
+Kolonizän, ko-lo-ni-tsaen, 植民地化, 名詞|現象  
+Abhänglen, ab-haeng-len, 依存, 名詞|現象  
+
 Tristanch 三角形
 Verstanch 四角形
 Lorzenstanch 長方形
