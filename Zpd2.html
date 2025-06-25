@@ -220,7 +220,7 @@
         return;
       }
 
-      const url = `${apiBase}/dictionary/${encodeURIComponent(dictionaryId)}/word/search?text=${encodeURIComponent(text)}&mode=${encodeURIComponent(mode)}`;
+      const url = `${apiBase}/dictionary/${encodeURIComponent(dictionaryId)}/words?text=${encodeURIComponent(text)}&mode=${encodeURIComponent(mode)}`;
 
       try {
         const res = await fetch(url, { headers: getHeaders() });
