@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ZpDIC API操作ツール 完全版</title>
+  <title>ZpDIC操作ツール 完全版</title>
   <style>
     body {
       font-family: sans-serif;
@@ -24,6 +24,10 @@
       padding: 10px;
       max-width: 500px;
       overflow: auto;
+    }
+    li {
+      list-style: none;
+      margin: 4px 0;
     }
   </style>
 </head>
@@ -75,8 +79,15 @@
   <textarea id="deleteWordNumbers" placeholder="例: 15\n10-12\n20"></textarea>
   <button onclick="deleteWords()">一括削除</button>
 
+  <hr>
+
+  <h2>📋 単語TODOリスト（sihyou.txt読み込み・チェック状態保存）</h2>
+  <button onclick="loadTodo()">TODOを読み込み</button>
+  <ul id="todoList"></ul>
+
   <script>
     const apiBase = 'https://zpdic.ziphil.com/api/v0';
+    const storageKey = 'todoCheckedStatus';
 
     function getHeaders() {
       const apiKey = document.getElementById('apiKey').value;
@@ -247,6 +258,64 @@
       }
 
       alert('一括削除が完了しました（エラーはコンソール確認）');
+    }
+
+    async function loadTodo() {
+      try {
+        const res = await fetch('sihyou.txt');
+        if (!res.ok) {
+          alert('❌ sihyou.txtの読み込みに失敗しました');
+          return;
+        }
+
+        const text = await res.text();
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+
+        const savedStatus = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+        const list = document.getElementById('todoList');
+        list.innerHTML = '';
+
+        for (const word of lines) {
+          const li = document.createElement('li');
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.style.marginRight = '8px';
+
+          const span = document.createElement('span');
+          span.textContent = word;
+
+          if (savedStatus[word]) {
+            checkbox.checked = true;
+            span.style.textDecoration = 'line-through';
+            span.style.color = 'gray';
+          }
+
+          checkbox.addEventListener('change', () => {
+            const status = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            if (checkbox.checked) {
+              span.style.textDecoration = 'line-through';
+              span.style.color = 'gray';
+              status[word] = true;
+            } else {
+              span.style.textDecoration = 'none';
+              span.style.color = 'black';
+              delete status[word];
+            }
+            localStorage.setItem(storageKey, JSON.stringify(status));
+          });
+
+          li.appendChild(checkbox);
+          li.appendChild(span);
+          list.appendChild(li);
+        }
+
+        alert('✅ TODOリストを読み込みました');
+      } catch (e) {
+        console.error(e);
+        alert('❌ エラーが発生しました');
+      }
     }
   </script>
 </body>
