@@ -2,209 +2,179 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ZpDIC API操作ツール</title>
+  <title>ZpDIC フル機能操作ツール</title>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 20px;
-      background: #f5f5f5;
-    }
-    input, textarea, button {
-      display: block;
-      margin: 8px 0;
-      padding: 6px;
-      width: 100%;
-      max-width: 500px;
-    }
-    textarea {
-      height: 60px;
-    }
-    pre {
-      background: #fff;
-      padding: 10px;
-      max-width: 500px;
-      overflow: auto;
-    }
+    body { font-family: sans-serif; margin: 20px; background: #f5f5f5; }
+    input, textarea, select, button { display: block; margin: 8px 0; padding: 6px; width: 100%; max-width: 500px; }
+    textarea { height: 80px; }
+    pre { background: #fff; padding: 10px; max-width: 800px; overflow: auto; }
   </style>
 </head>
 <body>
-  <h1>ZpDIC API操作ツール</h1>
+  <h1>ZpDIC API 操作用ツール（完全版）</h1>
+  <label>APIキー：</label><input type="text" id="apiKey">
+  <label>辞書ID：</label><input type="text" id="dictionaryId" placeholder="例: 1197">
 
-  <label>APIキー:</label>
-  <input type="text" id="apiKey">
-
-  <label>辞書ID:</label>
-  <input type="text" id="dictionaryId" placeholder="例: 1197">
-
-  <hr>
-
-  <h2>🔹 単語を追加</h2>
-  <input id="wordName" placeholder="単語名">
-  <input id="pronunciation" placeholder="発音 (例: fo͞o-bär)">
-  <input id="wordMeaning" placeholder="意味 (例: 架空の語)">
-  <input id="variations" placeholder="バリエーション (例: 変種1|変種2)">
-  <input id="tags" placeholder="タグ (例: 基本|重要)">
-  <button onclick="addWord()">単語を追加</button>
-
-  <hr>
-
-  <h2>🔍 単語を取得</h2>
-  <input id="wordNumber" placeholder="単語番号 (例: 123)">
-  <button onclick="getWord()">単語を取得</button>
+  <hr><h2>🔹 単語 作成 / 編集 / 削除</h2>
+  <input id="editWordNumber" placeholder="単語番号（新規は空）">
+  <input id="editWordName" placeholder="単語名">
+  <input id="editPronunciation" placeholder="発音">
+  <input id="editVariations" placeholder="変化形名|...">
+  <input id="editTags" placeholder="タグ|...">
+  <textarea id="editInformations" placeholder="意味など 情報タイトル|説明 の形式で複数行"></textarea>
+  <button onclick="submitWord()">単語を保存（新規 or 編集）</button>
+  <button onclick="deleteWord()">単語を削除</button>
+  <button onclick="loadWord()">単語を読み込み（編集用）</button>
   <pre id="wordResult"></pre>
 
-  <hr>
+  <hr><h2>🔎 単語検索</h2>
+  <input id="searchText" placeholder="検索文字列">
+  <select id="searchMode">
+    <option value="both">単語＋訳語</option>
+    <option value="name">単語名</option>
+    <option value="equivalent">訳語</option>
+    <option value="tag">タグ</option>
+    <option value="information">内容</option>
+    <option value="variation">変化形</option>
+    <option value="relation">関連語</option>
+    <option value="content">全文</option>
+  </select>
+  <button onclick="searchWords()">検索</button>
+  <pre id="searchResult"></pre>
 
-  <h2>💬 例文を追加</h2>
-  <textarea id="sentence" placeholder="例文 (This is foobar.)"></textarea>
-  <textarea id="translation" placeholder="翻訳 (これはfoobarです。)"></textarea>
-  <input id="exampleWordNumber" placeholder="関連する単語番号 (例: 123)">
-  <button onclick="addExample()">例文を追加</button>
+  <hr><h2>💬 例文 作成 / 編集 / 削除</h2>
+  <input id="editExampleNumber" placeholder="例文番号（新規は空）">
+  <textarea id="editSentence" placeholder="例文"></textarea>
+  <textarea id="editTranslation" placeholder="訳文"></textarea>
+  <input id="editExampleTags" placeholder="タグ|...">
+  <input id="editExampleSupplement" placeholder="補足">
+  <button onclick="submitExample()">例文を保存（新規 or 編集）</button>
+  <button onclick="deleteExample()">例文を削除</button>
+  <button onclick="loadExample()">例文を読み込み（編集用）</button>
+  <pre id="exampleResult"></pre>
 
-  <hr>
+  <hr><h2>🔎 例文 検索</h2>
+  <input id="searchExampleText" placeholder="検索文字列">
+  <select id="searchExampleMode">
+    <option value="both">本文＋訳文</option>
+    <option value="sentence">本文</option>
+    <option value="translation">訳文</option>
+    <option value="tag">タグ</option>
+    <option value="content">全文</option>
+  </select>
+  <button onclick="searchExamples()">検索</button>
+  <pre id="searchExampleResult"></pre>
 
-  <h2>📥 一括入力で単語追加（バリエーション・タグ対応）</h2>
-  <textarea id="bulkInput" placeholder="単語, 発音, 翻訳, バリエーション1|バリエーション2, タグ1|タグ2 を改行区切りで入力"></textarea>
-  <button onclick="bulkAddWords()">一括追加</button>
+<script>
+  const apiBase = 'https://zpdic.ziphil.com/api/v0';
+  function getHeaders() { return {'Content-Type':'application/json','X-Api-Key':document.getElementById('apiKey').value}; }
 
-  <script>
-    const apiBase = 'https://zpdic.ziphil.com/api/v0';
+  // 単語関連
+  async function submitWord(){
+    const id=document.getElementById('editWordNumber').value.trim();
+    const path=id?
+      `/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/word/${encodeURIComponent(id)}`:
+      `/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/word`;
+    const method=id?'PUT':'POST';
+    const infos=document.getElementById('editInformations').value.trim().split('\n').map(l=>{
+      const [title,text]=l.split('|');
+      return {title:title?.trim(),text:text?.trim()};
+    });
+    const body={word:{
+      name:document.getElementById('editWordName').value.trim(),
+      pronunciation:document.getElementById('editPronunciation').value.trim(),
+      equivalents:[],
+      tags:document.getElementById('editTags').value.split('|').filter(Boolean),
+      informations:infos,
+      variations:document.getElementById('editVariations').value.split('|').filter(Boolean).map(n=>({name:n})),
+      relations:[]
+    }};
+    const res=await fetch(apiBase+path,{method,headers:getHeaders(),body:JSON.stringify(body)});
+    alert(res.ok? '✅ 単語 ' + (id?'更新':'作成') + ' 成功':'❌ エラー ' + res.status);
+  }
+  async function loadWord(){
+    const id=document.getElementById('editWordNumber').value.trim();
+    if(!id){return alert('番号を入れてください');}
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/word/${id}`,{headers:getHeaders()});
+    if(!res.ok)return alert('読み込み失敗 ' + res.status);
+    const data=await res.json();
+    const w=data.word;
+    document.getElementById('editWordName').value=w.name||'';
+    document.getElementById('editPronunciation').value=w.pronunciation||'';
+    document.getElementById('editTags').value=(w.tags||[]).join('|');
+    document.getElementById('editVariations').value=(w.variations||[]).map(v=>v.name).join('|');
+    document.getElementById('editInformations').value=(w.informations||[]).map(i=>i.title+'|'+i.text).join('\n');
+    document.getElementById('wordResult').textContent = JSON.stringify(w,null,2);
+  }
+  async function deleteWord(){
+    const id=document.getElementById('editWordNumber').value.trim();
+    if(!id)return alert('番号を入れてください');
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/word/${id}`,{method:'DELETE',headers:getHeaders()});
+    alert(res.ok?'✅ 削除成功':'❌ エラー '+res.status);
+  }
+  async function searchWords(){
+    const dict=document.getElementById('dictionaryId').value.trim(),text=document.getElementById('searchText').value.trim();
+    if(!dict||!text)return alert('両方入力必要');
+    const params=new URLSearchParams({
+      text,text,
+      mode:document.getElementById('searchMode').value,
+      type:'part',ignoreCase:'true',skip:'0',limit:'100',
+      orderMode:'unicode',orderDirection:'ascending'
+    });
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(dict)}/words?${params}`,{headers:getHeaders()});
+    if(!res.ok)return alert('検索失敗 '+res.status);
+    const js=await res.json();
+    document.getElementById('searchResult').textContent=JSON.stringify(js.words||js,null,2);
+  }
 
-    function getHeaders() {
-      const apiKey = document.getElementById('apiKey').value;
-      return {
-        'Content-Type': 'application/json',
-        'X-Api-Key': apiKey
-      };
-    }
-
-    async function addWord() {
-      const dictionaryId = document.getElementById('dictionaryId').value;
-      const name = document.getElementById('wordName').value;
-      const pronunciation = document.getElementById('pronunciation').value;
-      const meaning = document.getElementById('wordMeaning').value;
-      const variationsInput = document.getElementById('variations').value;
-      const tagsInput = document.getElementById('tags').value;
-
-      const variations = variationsInput
-        ? variationsInput.split('|').map(v => ({ name: v.trim() }))
-        : [];
-
-      const tags = tagsInput
-        ? tagsInput.split('|').map(t => t.trim())
-        : [];
-
-      const body = {
-        word: {
-          name: name,
-          pronunciation: pronunciation || "",
-          equivalents: [],
-          tags: tags,
-          informations: [{ title: "意味", text: meaning }],
-          variations: variations,
-          relations: []
-        }
-      };
-
-      const res = await fetch(`${apiBase}/dictionary/${dictionaryId}/word`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(body)
-      });
-
-      alert(res.ok ? '✅ 単語を追加しました' : `❌ エラー: ${res.status}`);
-    }
-
-    async function getWord() {
-      const dictionaryId = document.getElementById('dictionaryId').value;
-      const number = document.getElementById('wordNumber').value;
-
-      const res = await fetch(`${apiBase}/dictionary/${dictionaryId}/word/${number}`, {
-        headers: getHeaders()
-      });
-
-      const data = await res.json();
-      document.getElementById('wordResult').textContent = JSON.stringify(data, null, 2);
-    }
-
-    async function addExample() {
-      const dictionaryId = document.getElementById('dictionaryId').value;
-      const sentence = document.getElementById('sentence').value;
-      const translation = document.getElementById('translation').value;
-      const wordNumber = parseInt(document.getElementById('exampleWordNumber').value);
-
-      const body = {
-        example: {
-          sentence: sentence,
-          translation: translation,
-          supplement: "",
-          tags: [],
-          words: [{ number: wordNumber }],
-          offer: null
-        }
-      };
-
-      const res = await fetch(`${apiBase}/dictionary/${dictionaryId}/example`, {
-        method: 'POST',
-        headers: getHeaders(),
-        body: JSON.stringify(body)
-      });
-
-      alert(res.ok ? '✅ 例文を追加しました' : `❌ エラー: ${res.status}`);
-    }
-
-    async function bulkAddWords() {
-      const dictionaryId = document.getElementById('dictionaryId').value;
-      const lines = document.getElementById('bulkInput').value.trim().split('\n');
-
-      for (const line of lines) {
-        const parts = line.split(',').map(s => s.trim());
-        const name = parts[0];
-        const pronunciation = parts[1] || "";
-        const meaning = parts[2] || "";
-        const variationsInput = parts[3] || "";
-        const tagsInput = parts[4] || "";
-
-        if (!name || !meaning) {
-          alert(`⚠ 不正な行: ${line}`);
-          continue;
-        }
-
-        const variations = variationsInput
-          ? variationsInput.split('|').map(v => ({ name: v.trim() }))
-          : [];
-
-        const tags = tagsInput
-          ? tagsInput.split('|').map(t => t.trim())
-          : [];
-
-        const body = {
-          word: {
-            name: name,
-            pronunciation: pronunciation,
-            equivalents: [],
-            tags: tags,
-            informations: [{ title: "意味", text: meaning }],
-            variations: variations,
-            relations: []
-          }
-        };
-
-        const res = await fetch(`${apiBase}/dictionary/${dictionaryId}/word`, {
-          method: 'POST',
-          headers: getHeaders(),
-          body: JSON.stringify(body)
-        });
-
-        if (res.ok) {
-          console.log(`✅ ${name} 追加成功`);
-        } else {
-          console.error(`❌ ${name} 追加失敗 (${res.status})`);
-        }
-      }
-
-      alert('一括追加が完了しました（エラーがある場合はコンソール確認）');
-    }
-  </script>
+  // 例文関連
+  async function submitExample(){
+    const id=document.getElementById('editExampleNumber').value.trim();
+    const path=id?
+      `/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/example/${encodeURIComponent(id)}`:
+      `/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/example`;
+    const method=id?'PUT':'POST';
+    const body={example:{
+      sentence:document.getElementById('editSentence').value.trim(),
+      translation:document.getElementById('editTranslation').value.trim(),
+      supplement:document.getElementById('editExampleSupplement').value.trim(),
+      tags:document.getElementById('editExampleTags').value.split('|').filter(Boolean),
+      words:[], offer:null
+    }};
+    const res=await fetch(apiBase+path,{method,headers:getHeaders(),body:JSON.stringify(body)});
+    alert(res.ok? '✅ 例文 ' + (id?'更新':'作成') + ' 成功':'❌ エラー ' + res.status);
+  }
+  async function loadExample(){
+    const id=document.getElementById('editExampleNumber').value.trim();
+    if(!id)return alert('番号を入れてください');
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/example/${id}`,{headers:getHeaders()});
+    if(!res.ok)return alert('読み込み失敗 '+res.status);
+    const ex= (await res.json()).example;
+    document.getElementById('editSentence').value=ex.sentence||'';
+    document.getElementById('editTranslation').value=ex.translation||'';
+    document.getElementById('editExampleTags').value=(ex.tags||[]).join('|');
+    document.getElementById('editExampleSupplement').value=ex.supplement||'';
+    document.getElementById('exampleResult').textContent=JSON.stringify(ex,null,2);
+  }
+  async function deleteExample(){
+    const id=document.getElementById('editExampleNumber').value.trim();
+    if(!id)return alert('番号を入れてください');
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(document.getElementById('dictionaryId').value)}/example/${id}`,{method:'DELETE',headers:getHeaders()});
+    alert(res.ok?'✅ 削除成功':'❌ エラー '+res.status);
+  }
+  async function searchExamples(){
+    const dict=document.getElementById('dictionaryId').value.trim(),text=document.getElementById('searchExampleText').value.trim();
+    if(!dict||!text)return alert('両方入力必要');
+    const params=new URLSearchParams({
+      text,text,
+      mode:document.getElementById('searchExampleMode').value,
+      type:'part',ignoreCase:'true',skip:'0',limit:'100'
+    });
+    const res=await fetch(`${apiBase}/dictionary/${encodeURIComponent(dict)}/examples?${params}`,{headers:getHeaders()});
+    if(!res.ok)return alert('検索失敗 '+res.status);
+    const js=await res.json();
+    document.getElementById('searchExampleResult').textContent=JSON.stringify(js.examples||js,null,2);
+  }
+</script>
 </body>
 </html>
