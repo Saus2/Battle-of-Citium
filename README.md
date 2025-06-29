@@ -7,6 +7,8 @@ https://docs.google.com/forms/d/e/1FAIpQLSczgUnpFrSKWMhINRBWfnCd4NYnoUupm9bUdXbK
 live at https://konnitiwa768.github.io/Battle-of-Citium/2.html
 https://konnitiwa768.github.io/Battle-of-Citium/3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Truk.html
+https://konnitiwa768.github.io/Battle-of-Citium/3.html
+https://konnitiwa768.github.io/Battle-of-Citium/Arr.html
 https://konnitiwa768.github.io/Battle-of-Citium/Zpd3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Teri3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Tokei.html
