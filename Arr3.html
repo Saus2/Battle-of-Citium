@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ZpDIC 派生ツール 完全逐次処理版</title>
+<style>
+body{font-family:sans-serif;margin:20px;background:#f5f5f5;}
+input,textarea,select,button{display:block;margin:8px 0;padding:6px;width:100%;max-width:500px;}
+textarea{height:80px;}
+pre{background:#fff;padding:10px;max-width:800px;overflow:auto;}
+h2{margin-top:30px;}
+</style>
+</head>
+<body>
+<h1>ZpDIC 操作＆派生ツール【機能フル・安全逐次派生版】</h1>
+
+<label>APIキー:</label><input id="apiKey">
+<label>搬入口辞書ID:</label><input id="inputDict">
+<label>搬出口辞書ID:</label><input id="outputDict">
+
+<hr><h2>🔹 派生ルール管理</h2>
+<textarea id="derivationRules" placeholder="d→t\na→e など改行区切り"></textarea>
+<input id="rulesetName" placeholder="ルールセット名">
+<button onclick="saveRuleset()">ルールセット保存</button>
+<select id="rulesetSelect"></select>
+<button onclick="loadRuleset()">選択呼び出し</button>
+<button onclick="deleteRuleset()">選択削除</button>
+
+<label>単語番号範囲（例: 1-500）:</label><input id="wordRange">
+<button onclick="runDerivation()">派生開始</button>
+<pre id="progress"></pre>
+
+<hr><h2>🔧 単語編集・検索</h2>
+<input id="editWordNumber" placeholder="単語番号（新規は空）">
+<input id="editWordName" placeholder="単語名">
+<input id="editPronunciation" placeholder="発音">
+<input id="editVariations" placeholder="変化形(|区切り)">
+<input id="editTags" placeholder="タグ(|区切り)">
+<textarea id="editInformations" placeholder="情報 タイトル|内容 改行区切り"></textarea>
+<button onclick="submitWord()">保存</button>
+<button onclick="deleteWord()">削除</button>
+<button onclick="loadWord()">読み込み</button>
+<pre id="wordResult"></pre>
+
+<h3>🔎 単語検索</h3>
+<input id="searchText" placeholder="検索語">
+<select id="searchMode">
+<option value="both">単語＋訳語</option>
+<option value="name">単語名</option>
+<option value="information">内容</option>
+<option value="variation">変化形</option>
+</select>
+<button onclick="searchWords()">検索</button>
+<pre id="searchResult"></pre>
+
+<script>
+const apiBase='https://zpdic.ziphil.com/api/v0';
+function getHeaders(){return {'Content-Type':'application/json','X-Api-Key':document.getElementById('apiKey').value};}
+
+// 派生ルール管理
+function saveRuleset(){
+  const name=document.getElementById('rulesetName').value.trim();
+  if(!name)return alert('名前必要');
+  const rules=document.getElementById('derivationRules').value.trim().split('\n').filter(Boolean);
+  const sets=JSON.parse(localStorage.getItem('derivationRulesets')||'[]');
+  const existing=sets.find(s=>s.name===name);
+  if(existing)existing.rules=rules;
+  else sets.push({name,rules});
+  localStorage.setItem('derivationRulesets',JSON.stringify(sets));
+  alert('保存完了');
+  renderRulesets();
+}
+function renderRulesets(){
+  const sets=JSON.parse(localStorage.getItem('derivationRulesets')||'[]');
+  const sel=document.getElementById('rulesetSelect');
+  sel.innerHTML='';
+  sets.forEach(s=>{
+    const opt=document.createElement('option');
+    opt.textContent=s.name;
+    sel.appendChild(opt);
+  });
+}
+function loadRuleset(){
+  const sel=document.getElementById('rulesetSelect');
+  if(!sel.value)return;
+  const sets=JSON.parse(localStorage.getItem('derivationRulesets')||'[]');
+  const found=sets.find(s=>s.name===sel.value);
+  if(found)document.getElementById('derivationRules').value=found.rules.join('\n');
+}
+function deleteRuleset(){
+  const sel=document.getElementById('rulesetSelect');
+  if(!sel.value)return;
+  let sets=JSON.parse(localStorage.getItem('derivationRulesets')||'[]');
+  sets=sets.filter(s=>s.name!==sel.value);
+  localStorage.setItem('derivationRulesets',JSON.stringify(sets));
+  renderRulesets();
+}
+
+// 派生処理（逐次）
+function applyRules(text,rules){
+  let res=text;
+  for(const rule of rules){
+    const [from,to]=rule.split('→').map(s=>s.trim());
+    if(from)res=res.replace(new RegExp(from,'g'),to);
+  }
+  return res;
+}
+
+async function runDerivation(){
+  const inId=document.getElementById('inputDict').value.trim();
+  const outId=document.getElementById('outputDict').value.trim();
+  const [start,end]=document.getElementById('wordRange').value.trim().split('-').map(Number);
+  const rules=document.getElementById('derivationRules').value.trim().split('\n').filter(Boolean);
+
+  if(!inId||!outId||isNaN(start)||isNaN(end)||rules.length===0){
+    alert('すべて入力してください');
+    return;
+  }
+
+  for(let i=start;i<=end;i++){
+    document.getElementById('progress').textContent=`${i-start+1} / ${end-start+1} 処理中（単語番号: ${i}）`;
+
+    try{
+      const res=await fetch(`${apiBase}/dictionary/${inId}/word/${i}`,{headers:getHeaders()});
+      if(!res.ok){
+        document.getElementById('progress').textContent+=`\n単語${i}の取得失敗(${res.status}) スキップ`;
+        continue;
+      }
+      const w=(await res.json()).word;
+
+      const newName=applyRules(w.name,rules);
+      const newPron=applyRules(w.pronunciation||'',rules);
+      const newInfos=(w.informations||[]).map(inf=>({title:applyRules(inf.title,rules),text:applyRules(inf.text,rules)}));
+
+      const body={word:{
+        name:newName,pronunciation:newPron,
+        equivalents:w.equivalents,
+        tags:w.tags,
+        informations:newInfos,
+        variations:w.variations,
+        relations:w.relations
+      }};
+
+      const postRes=await fetch(`${apiBase}/dictionary/${outId}/word`,{
+        method:'POST',
+        headers:getHeaders(),
+        body:JSON.stringify(body)
+      });
+      if(postRes.ok){
+        document.getElementById('progress').textContent+=`\n単語${i}派生完了`;
+      }else{
+        document.getElementById('progress').textContent+=`\n単語${i}派生失敗(${postRes.status})`;
+      }
+    }catch(e){
+      document.getElementById('progress').textContent+=`\n単語${i}処理中にエラー発生 スキップ`;
+      console.error(e);
+    }
+
+    await new Promise(r=>setTimeout(r,500)); // 次の単語まで待機
+  }
+
+  alert('✅ 派生処理 完了');
+}
+
+// 単語編集・検索
+async function submitWord(){
+  const dict=document.getElementById('inputDict').value.trim();
+  const id=document.getElementById('editWordNumber').value.trim();
+  const method=id?'PUT':'POST';
+  const path=id?`/word/${id}`:'/word';
+  const infos=document.getElementById('editInformations').value.trim().split('\n').map(l=>{const[t,x]=l.split('|');return{title:t?.trim(),text:x?.trim()}});
+  const body={word:{
+    name:document.getElementById('editWordName').value.trim(),
+    pronunciation:document.getElementById('editPronunciation').value.trim(),
+    equivalents:[],tags:document.getElementById('editTags').value.split('|').filter(Boolean),
+    informations:infos,
+    variations:document.getElementById('editVariations').value.split('|').filter(Boolean).map(n=>({name:n})),
+    relations:[]
+  }};
+  const res=await fetch(`${apiBase}/dictionary/${dict}${path}`,{method,headers:getHeaders(),body:JSON.stringify(body)});
+  alert(res.ok?'✅ 完了':'❌ エラー '+res.status);
+}
+async function loadWord(){
+  const dict=document.getElementById('inputDict').value.trim();
+  const id=document.getElementById('editWordNumber').value.trim();
+  if(!id)return;
+  const res=await fetch(`${apiBase}/dictionary/${dict}/word/${id}`,{headers:getHeaders()});
+  if(!res.ok)return alert('失敗');
+  const w=(await res.json()).word;
+  document.getElementById('editWordName').value=w.name;
+  document.getElementById('editPronunciation').value=w.pronunciation||'';
+  document.getElementById('editTags').value=w.tags.join('|');
+  document.getElementById('editVariations').value=w.variations.map(v=>v.name).join('|');
+  document.getElementById('editInformations').value=w.informations.map(i=>i.title+'|'+i.text).join('\n');
+  document.getElementById('wordResult').textContent=JSON.stringify(w,null,2);
+}
+async function deleteWord(){
+  const dict=document.getElementById('inputDict').value.trim();
+  const id=document.getElementById('editWordNumber').value.trim();
+  if(!id)return;
+  const res=await fetch(`${apiBase}/dictionary/${dict}/word/${id}`,{method:'DELETE',headers:getHeaders()});
+  alert(res.ok?'✅ 削除':'❌ エラー');
+}
+async function searchWords(){
+  const dict=document.getElementById('inputDict').value.trim(),text=document.getElementById('searchText').value.trim();
+  const mode=document.getElementById('searchMode').value;
+  const res=await fetch(`${apiBase}/dictionary/${dict}/words?text=${encodeURIComponent(text)}&mode=${mode}&type=part&limit=100`,{headers:getHeaders()});
+  if(!res.ok)return alert('検索失敗');
+  const js=await res.json();
+  document.getElementById('searchResult').textContent=JSON.stringify(js.words||js,null,2);
+}
+
+renderRulesets();
+</script>
+</body>
+</html>
