@@ -11,7 +11,7 @@ https://konnitiwa768.github.io/Battle-of-Citium/3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Arr3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Zpd3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Teri3.html
-https://konnitiwa768.github.io/Battle-of-Citium/Idle2.html
+https://konnitiwa768.github.io/Battle-of-Citium/Idle3.html
 https://konnitiwa768.github.io/Battle-of-Citium/Tokei.html
 https://konnitiwa768.github.io/Battle-of-Citium/Oyar.html
 
