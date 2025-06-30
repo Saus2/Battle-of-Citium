@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cyberpunk Idle 強化版</title>
+  <title>Cyberpunk Idle 改良版</title>
   <style>
     body {
       background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -44,7 +44,7 @@
   </style>
 </head>
 <body>
-  <h1>Cyberpunk Idle 強化版</h1>
+  <h1>Cyberpunk Idle 改良版</h1>
   <p id="status"></p>
   <p id="multiplierDisplay"></p>
   <canvas id="gameCanvas" width="500" height="500"></canvas>
@@ -60,26 +60,27 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 const circleTypes = [
-  { color: 'red',       price: 10,     production: 1 },
-  { color: 'orange',    price: 100,    production: 5 },
-  { color: 'yellow',    price: 1100,   production: 25 },
-  { color: 'green',     price: 13000,  production: 150 },
-  { color: 'cyan',      price: 140000, production: 1000 },
-  { color: 'blue',      price: 1750000, production: 7500 },
-  { color: 'purple',    price: 23000000, production: 50000 },
-  { color: 'pink',      price: 340000000, production: 350000 },
-  { color: 'lime',      price: 4500000000, production: 2500000 },
-  { color: 'white',     price: 128000000000, production: 20000000 }
+  { color: 'red',       price: 10,           production: 1,       radius: 20 },
+  { color: 'orange',    price: 1_000,        production: 5,       radius: 35 },
+  { color: 'yellow',    price: 10_000,       production: 25,      radius: 50 },
+  { color: 'green',     price: 200_000,      production: 150,     radius: 65 },
+  { color: 'cyan',      price: 3_000_000,    production: 1_000,   radius: 80 },
+  { color: 'blue',      price: 50_000_000,   production: 7_500,   radius: 95 },
+  { color: 'purple',    price: 1_000_000_000,production: 50_000,  radius: 110 },
+  { color: 'pink',      price: 15_000_000_000, production: 350_000, radius: 125 },
+  { color: 'lime',      price: 250_000_000_000, production: 2_500_000, radius: 141 },
+  { color: 'white',     price: 5_000_000_000_000, production: 20_000_000, radius: 157 }
 ];
 
 let gameData = {
   circles: Array(10).fill(0),
   prices: circleTypes.map(c => c.price),
-  currency: 15,
+  currency: 0,
   upgradeLevel: 0,
   prestigePoints: 0,
   totalProduced: 0,
-  lastUpdate: Date.now()
+  lastUpdate: Date.now(),
+  rotationAngle: 0
 };
 
 function save() {
@@ -120,7 +121,8 @@ function prestige() {
       upgradeLevel: 0,
       prestigePoints: gameData.prestigePoints + gained,
       totalProduced: 0,
-      lastUpdate: Date.now()
+      lastUpdate: Date.now(),
+      rotationAngle: 0
     };
     save();
   }
@@ -136,7 +138,8 @@ function resetGame() {
       upgradeLevel: 0,
       prestigePoints: 0,
       totalProduced: 0,
-      lastUpdate: Date.now()
+      lastUpdate: Date.now(),
+      rotationAngle: 0
     };
   }
 }
@@ -154,28 +157,23 @@ function produce(diffSec) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const positions = [];
-  let index = 0;
-  const totalCircles = gameData.circles.reduce((a, b) => a + b, 0);
+  let indexOffsets = Array(10).fill(0);
 
   for (let i = 0; i < circleTypes.length; i++) {
     const count = gameData.circles[i];
+    const radius = circleTypes[i].radius;
     for (let j = 0; j < count; j++) {
-      const angle = (index / totalCircles) * 2 * Math.PI;
-      const x = 250 + 150 * Math.cos(angle);
-      const y = 250 + 150 * Math.sin(angle);
-      positions.push({ x, y, color: circleTypes[i].color });
-      index++;
+      const angle = gameData.rotationAngle + (indexOffsets[i] / count) * 2 * Math.PI;
+      const x = 250 + radius * Math.cos(angle);
+      const y = 250 + radius * Math.sin(angle);
+      ctx.beginPath();
+      ctx.arc(x, y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = circleTypes[i].color;
+      ctx.fill();
+      ctx.strokeStyle = '#00ffe7';
+      ctx.stroke();
+      indexOffsets[i]++;
     }
-  }
-
-  for (let c of positions) {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, 15, 0, Math.PI * 2);
-    ctx.fillStyle = c.color;
-    ctx.fill();
-    ctx.strokeStyle = '#00ffe7';
-    ctx.stroke();
   }
 }
 
@@ -195,6 +193,8 @@ function update() {
 
   updateShop();
   updateMultiplierDisplay();
+
+  gameData.rotationAngle += 0.01;
   save();
 }
 
