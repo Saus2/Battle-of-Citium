@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cyberpunk Idle</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #00ffe7;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    canvas {
+      background: #111;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #00ffe7;
+      box-shadow: 0 0 20px #00ffe7;
+    }
+    button {
+      background: transparent;
+      color: #00ffe7;
+      border: 2px solid #00ffe7;
+      margin: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    button:hover {
+      background: #00ffe7;
+      color: #111;
+    }
+    #status {
+      font-size: 18px;
+      margin: 10px 0;
+      text-shadow: 0 0 5px #00ffe7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cyberpunk Idle</h1>
+  <p id="status"></p>
+  <canvas id="gameCanvas" width="500" height="500"></canvas>
+  <div id="shop"></div>
+  <div>
+    <button onclick="upgrade()">アップグレード (コスト: <span id='upgradeCost'></span>)</button>
+    <button onclick="prestige()">転生 (必要総生産量: 10000)</button>
+    <button onclick="resetGame()">リセット</button>
+  </div>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+const circleTypes = [
+  { color: 'red',       price: 10,     production: 1 },
+  { color: 'orange',    price: 100,    production: 1.5 },
+  { color: 'yellow',    price: 1100,   production: 2 },
+  { color: 'green',     price: 13000,  production: 3 },
+  { color: 'cyan',      price: 140000, production: 5 },
+  { color: 'blue',      price: 1750000, production: 8 },
+  { color: 'purple',    price: 23000000, production: 12 },
+  { color: 'pink',      price: 340000000, production: 20 },
+  { color: 'lime',      price: 4500000000, production: 35 },
+  { color: 'white',     price: 128000000000, production: 60 }
+];
+
+let gameData = {
+  circles: Array(10).fill(0),
+  prices: circleTypes.map(c => c.price),
+  currency: 0,
+  upgradeLevel: 0,
+  prestigePoints: 0,
+  totalProduced: 0,
+  lastUpdate: Date.now()
+};
+
+function save() {
+  localStorage.setItem('cyberIdleSave', JSON.stringify(gameData));
+}
+
+function load() {
+  const data = localStorage.getItem('cyberIdleSave');
+  if (data) gameData = JSON.parse(data);
+}
+
+function buyCircle(index) {
+  const price = gameData.prices[index];
+  if (gameData.currency >= price) {
+    gameData.currency -= price;
+    gameData.circles[index]++;
+    gameData.prices[index] *= 1.15;
+    save();
+  }
+}
+
+function upgrade() {
+  const cost = 100 * (gameData.upgradeLevel + 1);
+  if (gameData.currency >= cost) {
+    gameData.currency -= cost;
+    gameData.upgradeLevel++;
+    save();
+  }
+}
+
+function prestige() {
+  if (gameData.totalProduced >= 10000) {
+    const gained = Math.floor(gameData.totalProduced / 10000);
+    gameData = {
+      circles: Array(10).fill(0),
+      prices: circleTypes.map(c => c.price),
+      currency: 0,
+      upgradeLevel: 0,
+      prestigePoints: gameData.prestigePoints + gained,
+      totalProduced: 0,
+      lastUpdate: Date.now()
+    };
+    save();
+  }
+}
+
+function resetGame() {
+  if (confirm("本当にリセットしますか？")) {
+    localStorage.removeItem('cyberIdleSave');
+    gameData = {
+      circles: Array(10).fill(0),
+      prices: circleTypes.map(c => c.price),
+      currency: 0,
+      upgradeLevel: 0,
+      prestigePoints: 0,
+      totalProduced: 0,
+      lastUpdate: Date.now()
+    };
+  }
+}
+
+function produce(diffSec) {
+  let prod = 0;
+  for (let i = 0; i < circleTypes.length; i++) {
+    const count = gameData.circles[i];
+    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints;
+    prod += count * circleTypes[i].production * multiplier;
+  }
+  gameData.currency += prod * diffSec;
+  gameData.totalProduced += prod * diffSec;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const positions = [];
+  let index = 0;
+  const totalCircles = gameData.circles.reduce((a, b) => a + b, 0);
+
+  for (let i = 0; i < circleTypes.length; i++) {
+    const count = gameData.circles[i];
+    for (let j = 0; j < count; j++) {
+      const angle = (index / totalCircles) * 2 * Math.PI;
+      const x = 250 + 150 * Math.cos(angle);
+      const y = 250 + 150 * Math.sin(angle);
+      positions.push({ x, y, color: circleTypes[i].color });
+      index++;
+    }
+  }
+
+  for (let c of positions) {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, 15, 0, Math.PI * 2);
+    ctx.fillStyle = c.color;
+    ctx.fill();
+    ctx.strokeStyle = '#00ffe7';
+    ctx.stroke();
+  }
+}
+
+function update() {
+  const now = Date.now();
+  const diffSec = (now - gameData.lastUpdate) / 1000;
+  produce(diffSec);
+  gameData.lastUpdate = now;
+
+  draw();
+
+  const prodPerSec = calculateProdPerSec();
+  document.getElementById('status').innerText =
+    `通貨: ${format(gameData.currency)} | 生産力: ${format(prodPerSec)}/秒 | アップグレードLv: ${gameData.upgradeLevel} | 転生P: ${gameData.prestigePoints}`;
+
+  document.getElementById('upgradeCost').innerText = format(100 * (gameData.upgradeLevel + 1));
+
+  updateShop();
+  save();
+}
+
+function calculateProdPerSec() {
+  let prod = 0;
+  for (let i = 0; i < circleTypes.length; i++) {
+    const count = gameData.circles[i];
+    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints;
+    prod += count * circleTypes[i].production * multiplier;
+  }
+  return prod;
+}
+
+function updateShop() {
+  for (let i = 0; i < circleTypes.length; i++) {
+    const btn = document.getElementById('buy' + i);
+    btn.innerText = `${circleTypes[i].color} 円を買う (${format(gameData.prices[i])}) [所持:${gameData.circles[i]}]`;
+  }
+}
+
+function format(num) {
+  if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
+  if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+  if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+  if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
+  return num.toFixed(1);
+}
+
+function initShop() {
+  const shopDiv = document.getElementById('shop');
+  circleTypes.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.id = 'buy' + i;
+    btn.onclick = () => buyCircle(i);
+    shopDiv.appendChild(btn);
+  });
+  updateShop();
+}
+
+load();
+initShop();
+
+const offlineDiff = (Date.now() - gameData.lastUpdate) / 1000;
+produce(offlineDiff);
+alert(`オフライン中に ${format(calculateProdPerSec() * offlineDiff)} 生産しました！`);
+
+setInterval(update, 100);
+</script>
+</body>
+</html>
