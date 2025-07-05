@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cyberpunk Idle 改良版</title>
+  <title>Cyberpunk Idle 改良版++</title>
   <style>
     body {
       background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -44,7 +44,7 @@
   </style>
 </head>
 <body>
-  <h1>Cyberpunk Idle 改良版</h1>
+  <h1>Cyberpunk Idle 改良版++</h1>
   <p id="status"></p>
   <p id="multiplierDisplay"></p>
   <canvas id="gameCanvas" width="500" height="500"></canvas>
@@ -53,6 +53,16 @@
     <button onclick="upgrade()">アップグレード (コスト: <span id='upgradeCost'></span>)</button>
     <button onclick="prestige()">転生 (必要総生産量: 10000)</button>
     <button onclick="resetGame()">リセット</button>
+    <button onclick="openBreeding()">品種改良</button>
+  </div>
+
+  <div id="breedingPanel" style="display:none; margin-top:20px;">
+    <h2>品種改良</h2>
+    <p>5スロットにグリフを選択して円を強化します。</p>
+    <div id="glyphSlots"></div>
+    <div id="glyphInventory"></div>
+    <button onclick="applyBreeding()">強化実行</button>
+    <button onclick="closeBreeding()">閉じる</button>
   </div>
 
 <script>
@@ -60,53 +70,55 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 const circleTypes = [
-  { color: 'red',       price: 10,           production: 1,       radius: 20 },
-  { color: 'orange',    price: 1_000,        production: 2.5,       radius: 35 },
-  { color: 'yellow',    price: 10_000,       production: 15,      radius: 50 },
-  { color: 'green',     price: 200_000,      production: 90,     radius: 65 },
-  { color: 'cyan',      price: 3_000_000,    production: 470,   radius: 80 },
-  { color: 'blue',      price: 50_000_000,   production: 3_000,   radius: 95 },
-  { color: 'purple',    price: 1_000_000_000,production: 9_500,  radius: 110 },
-  { color: 'pink',      price: 15_000_000_000, production: 57_600, radius: 125 },
-  { color: 'lime',      price: 250_000_000_000, production: 348_210, radius: 141 },
-  { color: 'white',     price: 5_000_000_000_000, production: 2_000_000, radius: 157 },
-  { color: 'magenta',     price: 215_000_000_000_000, production: 18_000_000, radius: 169 },
-  { color: 'glay',     price: 30_215_000_000_000_000, production: 112_000_000, radius: 181 },
-  { color: 'turquoise',     price: 430_215_000_000_000_000, production: 702_000_000, radius: 193 }
+  { color: 'red', price: 10, production: 1, radius: 20 },
+  { color: 'orange', price: 1000, production: 2.5, radius: 35 },
+  { color: 'yellow', price: 10000, production: 15, radius: 50 },
+  { color: 'green', price: 200000, production: 90, radius: 65 },
+  { color: 'cyan', price: 3000000, production: 470, radius: 80 },
+  { color: 'blue', price: 50000000, production: 3000, radius: 95 },
+  { color: 'purple', price: 1000000000, production: 9500, radius: 110 },
+  { color: 'pink', price: 15000000000, production: 57600, radius: 125 },
+  { color: 'lime', price: 250000000000, production: 348210, radius: 141 },
+  { color: 'white', price: 5000000000000, production: 2000000, radius: 157 },
+  { color: 'magenta', price: 215000000000000, production: 18000000, radius: 169 },
+  { color: 'glay', price: 30215000000000000, production: 112000000, radius: 181 },
+  { color: 'turquoise', price: 430215000000000000, production: 702000000, radius: 193 },
+  { color: 'gold', price: 1e19, production: 5000000000, radius: 205 },
+  { color: 'black', price: 1e21, production: 30000000000, radius: 217 }
 ];
 
+const glyphs = ['α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ'];
+
 let gameData = {
-  circles: Array(10).fill(0),
+  circles: Array(circleTypes.length).fill(0),
   prices: circleTypes.map(c => c.price),
   currency: 15,
   upgradeLevel: 0,
   prestigePoints: 0,
   totalProduced: 0,
   lastUpdate: Date.now(),
-  rotationAngle: 0
+  rotationAngle: 0,
+  breedingSlots: Array(5).fill(null)
 };
 
-function save() {
-  localStorage.setItem('cyberIdleSave', JSON.stringify(gameData));
-}
-
+function save() { localStorage.setItem('cyberIdleSave', JSON.stringify(gameData)); }
 function load() {
   const data = localStorage.getItem('cyberIdleSave');
   if (data) gameData = JSON.parse(data);
 }
 
-function buyCircle(index) {
-  const price = gameData.prices[index];
+function buyCircle(i) {
+  const price = gameData.prices[i];
   if (gameData.currency >= price) {
     gameData.currency -= price;
-    gameData.circles[index]++;
-    gameData.prices[index] *= 1.15;
+    gameData.circles[i]++;
+    gameData.prices[i] *= 1.15;
     save();
   }
 }
 
 function upgrade() {
-  const cost = 100 * (gameData.upgradeLevel * 1.15);
+  const cost = 100 * (gameData.upgradeLevel + 1);
   if (gameData.currency >= cost) {
     gameData.currency -= cost;
     gameData.upgradeLevel++;
@@ -118,14 +130,15 @@ function prestige() {
   if (gameData.totalProduced >= 10000) {
     const gained = Math.floor(gameData.totalProduced / 10000);
     gameData = {
-      circles: Array(10).fill(0),
+      circles: Array(circleTypes.length).fill(0),
       prices: circleTypes.map(c => c.price),
       currency: 15,
       upgradeLevel: 0,
       prestigePoints: gameData.prestigePoints + gained,
       totalProduced: 0,
       lastUpdate: Date.now(),
-      rotationAngle: 0
+      rotationAngle: 0,
+      breedingSlots: Array(5).fill(null)
     };
     save();
   }
@@ -134,16 +147,7 @@ function prestige() {
 function resetGame() {
   if (confirm("本当にリセットしますか？")) {
     localStorage.removeItem('cyberIdleSave');
-    gameData = {
-      circles: Array(10).fill(0),
-      prices: circleTypes.map(c => c.price),
-      currency: 15,
-      upgradeLevel: 0,
-      prestigePoints: 0,
-      totalProduced: 0,
-      lastUpdate: Date.now(),
-      rotationAngle: 0
-    };
+    location.reload();
   }
 }
 
@@ -151,17 +155,20 @@ function produce(diffSec) {
   let prod = 0;
   for (let i = 0; i < circleTypes.length; i++) {
     const count = gameData.circles[i];
-    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints;
+    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints + breedingBonus();
     prod += count * circleTypes[i].production * multiplier;
   }
   gameData.currency += prod * diffSec;
   gameData.totalProduced += prod * diffSec;
 }
 
+function breedingBonus() {
+  return gameData.breedingSlots.filter(g => g).length * 0.05;
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  let indexOffsets = Array(10).fill(0);
-
+  let indexOffsets = Array(circleTypes.length).fill(0);
   for (let i = 0; i < circleTypes.length; i++) {
     const count = gameData.circles[i];
     const radius = circleTypes[i].radius;
@@ -185,18 +192,11 @@ function update() {
   const diffSec = (now - gameData.lastUpdate) / 1000;
   produce(diffSec);
   gameData.lastUpdate = now;
-
   draw();
-
-  const prodPerSec = calculateProdPerSec();
-  document.getElementById('status').innerText =
-    `通貨: ${format(gameData.currency)} | 生産力: ${format(prodPerSec)}/秒 | アップグレードLv: ${gameData.upgradeLevel} | 転生P: ${gameData.prestigePoints}`;
-
+  document.getElementById('status').innerText = `通貨: ${format(gameData.currency)} | 生産力: ${format(calculateProdPerSec())}/秒 | アップグレードLv: ${gameData.upgradeLevel} | 転生P: ${gameData.prestigePoints}`;
   document.getElementById('upgradeCost').innerText = format(100 * (gameData.upgradeLevel + 1));
-
   updateShop();
   updateMultiplierDisplay();
-
   gameData.rotationAngle += 0.01;
   save();
 }
@@ -205,7 +205,7 @@ function calculateProdPerSec() {
   let prod = 0;
   for (let i = 0; i < circleTypes.length; i++) {
     const count = gameData.circles[i];
-    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints;
+    const multiplier = 1 + 0.2 * gameData.upgradeLevel + 0.1 * gameData.prestigePoints + breedingBonus();
     prod += count * circleTypes[i].production * multiplier;
   }
   return prod;
@@ -214,7 +214,13 @@ function calculateProdPerSec() {
 function updateShop() {
   for (let i = 0; i < circleTypes.length; i++) {
     const btn = document.getElementById('buy' + i);
-    btn.innerText = `${circleTypes[i].color} 円を買う (${format(gameData.prices[i])}) [所持:${gameData.circles[i]}]`;
+    if (!btn) {
+      const newBtn = document.createElement('button');
+      newBtn.id = 'buy' + i;
+      newBtn.onclick = () => buyCircle(i);
+      document.getElementById('shop').appendChild(newBtn);
+    }
+    document.getElementById('buy' + i).innerText = `${circleTypes[i].color} 円を買う (${format(gameData.prices[i])}) [所持:${gameData.circles[i]}]`;
   }
 }
 
@@ -225,8 +231,39 @@ function updateMultiplierDisplay() {
       display.push(`${circleTypes[i].production}^${gameData.circles[i]}`);
     }
   }
-  document.getElementById('multiplierDisplay').innerText =
-    `倍率内訳: ${display.length ? display.join(' × ') : 'なし'}`;
+  document.getElementById('multiplierDisplay').innerText = `倍率内訳: ${display.length ? display.join(' × ') : 'なし'} + 品種改良ボーナス(${(breedingBonus() * 100).toFixed(1)}%)`;
+}
+
+function openBreeding() {
+  document.getElementById('breedingPanel').style.display = 'block';
+  const slotsDiv = document.getElementById('glyphSlots');
+  slotsDiv.innerHTML = '';
+  gameData.breedingSlots.forEach((g, idx) => {
+    const s = document.createElement('span');
+    s.style.margin = '5px';
+    s.innerText = g ? g : '[空]';
+    s.onclick = () => {
+      const selected = prompt(`スロット${idx + 1}に以下の文字を入力: ${glyphs.join(', ')}`);
+      if (glyphs.includes(selected)) {
+        gameData.breedingSlots[idx] = selected;
+        openBreeding();
+      }
+    };
+    slotsDiv.appendChild(s);
+  });
+
+  const invDiv = document.getElementById('glyphInventory');
+  invDiv.innerHTML = '<p>利用可能なグリフ:</p>' + glyphs.join(', ');
+}
+
+function closeBreeding() {
+  document.getElementById('breedingPanel').style.display = 'none';
+}
+
+function applyBreeding() {
+  alert("品種改良を適用しました。強化ボーナスが更新されます。");
+  closeBreeding();
+  save();
 }
 
 function format(num) {
@@ -241,24 +278,9 @@ function format(num) {
   return num.toFixed(1);
 }
 
-function initShop() {
-  const shopDiv = document.getElementById('shop');
-  circleTypes.forEach((c, i) => {
-    const btn = document.createElement('button');
-    btn.id = 'buy' + i;
-    btn.onclick = () => buyCircle(i);
-    shopDiv.appendChild(btn);
-  });
-  updateShop();
-}
-
 load();
-initShop();
-
-const offlineDiff = (Date.now() - gameData.lastUpdate) / 1000;
-produce(offlineDiff);
-alert(`オフライン中に ${format(calculateProdPerSec() * offlineDiff)} 生産しました！`);
-
+updateShop();
+alert(`オフライン中に ${format(calculateProdPerSec() * ((Date.now() - gameData.lastUpdate) / 1000))} 生産しました！`);
 setInterval(update, 100);
 </script>
 </body>
