@@ -61,15 +61,18 @@ const ctx = canvas.getContext('2d');
 
 const circleTypes = [
   { color: 'red',       price: 10,           production: 1,       radius: 20 },
-  { color: 'orange',    price: 1_000,        production: 5,       radius: 35 },
-  { color: 'yellow',    price: 10_000,       production: 25,      radius: 50 },
-  { color: 'green',     price: 200_000,      production: 150,     radius: 65 },
-  { color: 'cyan',      price: 3_000_000,    production: 1_000,   radius: 80 },
-  { color: 'blue',      price: 50_000_000,   production: 7_500,   radius: 95 },
-  { color: 'purple',    price: 1_000_000_000,production: 50_000,  radius: 110 },
-  { color: 'pink',      price: 15_000_000_000, production: 350_000, radius: 125 },
-  { color: 'lime',      price: 250_000_000_000, production: 2_500_000, radius: 141 },
-  { color: 'white',     price: 5_000_000_000_000, production: 20_000_000, radius: 157 }
+  { color: 'orange',    price: 1_000,        production: 2.5,       radius: 35 },
+  { color: 'yellow',    price: 10_000,       production: 15,      radius: 50 },
+  { color: 'green',     price: 200_000,      production: 90,     radius: 65 },
+  { color: 'cyan',      price: 3_000_000,    production: 470,   radius: 80 },
+  { color: 'blue',      price: 50_000_000,   production: 3000,   radius: 95 },
+  { color: 'purple',    price: 1_000_000_000,production: 9_500,  radius: 110 },
+  { color: 'pink',      price: 15_000_000_000, production: 57_600, radius: 125 },
+  { color: 'lime',      price: 250_000_000_000, production: 348_210, radius: 141 },
+  { color: 'white',     price: 5_000_000_000_000, production: 2_000_000, radius: 157 },
+  { color: 'magenta',     price: 215_000_000_000_000, production: 18_000_000, radius: 169 },
+  { color: '#494949',     price: 30_215_000_000_000_000, production: 112_000_000, radius: 181 },
+  { color: '#66ff66',     price: 430_215_000_000_000_000, production: 702_000_000, radius: 193 }
 ];
 
 let gameData = {
@@ -103,7 +106,7 @@ function buyCircle(index) {
 }
 
 function upgrade() {
-  const cost = 100 * (gameData.upgradeLevel + 1);
+  const cost = 100 * (gameData.upgradeLevel * 1.15);
   if (gameData.currency >= cost) {
     gameData.currency -= cost;
     gameData.upgradeLevel++;
@@ -227,6 +230,10 @@ function updateMultiplierDisplay() {
 }
 
 function format(num) {
+  if (num >= 1e24) return (num / 1e24).toFixed(2) + 'Sp';
+  if (num >= 1e21) return (num / 1e21).toFixed(2) + 'Sx';
+  if (num >= 1e18) return (num / 1e18).toFixed(2) + 'Qi';
+  if (num >= 1e15) return (num / 1e15).toFixed(2) + 'Qa';
   if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
   if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
   if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
