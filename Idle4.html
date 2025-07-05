@@ -118,7 +118,7 @@ function buyCircle(i) {
 }
 
 function upgrade() {
-  const cost = 100 * (gameData.upgradeLevel + 1);
+  const cost = 100 * (gameData.upgradeLevel * 1.15);
   if (gameData.currency >= cost) {
     gameData.currency -= cost;
     gameData.upgradeLevel++;
